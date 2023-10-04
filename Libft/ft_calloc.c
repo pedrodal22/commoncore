@@ -2,17 +2,18 @@
 #include <string.h>
 #include <stdlib.h>
 
-void    *ft_calloc(size_t nitems, size_t size)
+void	*ft_calloc(size_t nitems, size_t size)
 {
-    void *ptr;
-    unsigned int total_size = nitems * size;
+	void		*ptr;
+	unsigned int	total_size;
 
-    ptr = malloc(total_size);
-    if(ptr != NULL)
-    {
-        memset(ptr, 0, total_size);
-    }
-    return (ptr);
+	total_size = nitems * size;
+	ptr = malloc(total_size);
+	if (ptr != NULL)
+	{
+		memset (ptr, 0, total_size);
+	}
+	return (ptr);
 }
 
 /*
