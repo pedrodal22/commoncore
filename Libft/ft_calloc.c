@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/05 14:58:17 by pfranco-          #+#    #+#             */
+/*   Updated: 2023/10/05 18:22:20 by pfranco-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
 void	*ft_calloc(size_t nitems, size_t size)
 {
-	void		*ptr;
+	void			*ptr;
 	unsigned int	total_size;
 
 	total_size = nitems * size;

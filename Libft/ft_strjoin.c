@@ -1,54 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/05 15:02:42 by pfranco-          #+#    #+#             */
+/*   Updated: 2023/10/05 16:01:15 by pfranco-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "libft.h"
 
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-    int i;
-    int a;
-    char *result;
+	int		i;
+	int		a;
+	char	*result;
 
-    i = 0;
-    a = 0;
-
-    while (s1[i] != '\0')
-    {
-        i++;
-    }
-    while (s2[a] != '\0')
-    {
-        i++;
-        a++;
-    }
-
-    result = malloc((i * sizeof(char)) + 1);
-
-    if (result == NULL)
-    {
-        return NULL;
-    }
-
-    i = 0;
-    a = 0;
-
-    while (s1[i] != '\0')
-    {
-        result[i] = s1[i];
-        i++;
-    }
-    while (s2[a] != '\0')
-    {
-        result[i] = s2[a];
-        a++;
-        i++;
-    }
-
-    result[i] = '\0';
-
-    return (result);
+	i = 0;
+	a = 0;
+	result = malloc((ft_strlen(s1) + ft_strlen(s2)+ 1));
+	if (result == NULL)
+	{
+		return (NULL);
+	}
+	while (i < ft_strlen(s1))
+	{
+		result[i] = s1[i];
+		i++;
+	}
+	while (a < ft_strlen(s2))
+	{
+		result[i] = s2[a];
+		a++;
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
 }
 
-
+/*
 int main()
 {
     const char *str1 = "Hello, ";
@@ -67,3 +62,4 @@ int main()
 
     return 0;
 }
+*/

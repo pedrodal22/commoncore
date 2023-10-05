@@ -6,24 +6,24 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:02:21 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/04 15:02:31 by pfranco-         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:47:29 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-char *strchr(const char *str, int c)
+char	*ft_strchr( char *str, int c)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i] != '\0')
-    {
-        if (str[i] == c)
-        {
-            return((char*)&str[i]);
-        }
-        i++;
-    }
-    return (NULL);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+		{
+			return ((char *)&str[i]);
+		}
+		i++;
+	}
+	return (NULL);
 }

@@ -1,40 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/04 15:02:52 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/05 18:20:08 by pfranco-         ###   ########.fr       */
+/*   Created: 2023/10/04 15:28:25 by pfranco-          #+#    #+#             */
+/*   Updated: 2023/10/05 16:22:23 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+char	*ft_strnstr(char *s, char *k, size_t len)
 {
 	unsigned int	a;
+	unsigned int	b;
 
 	a = 0;
-	while ((s1[a] != '\0' || s2[a] != '\0') && a < n)
+	b = a;
+	if (k[b] == '\0')
 	{
-		if (s1[a] > s2[a])
-		{
-			return (1);
-		}
-		else if (s1[a] < s2[a])
-		{
-			return (-1);
-		}
-		a++;
+		return (s);
 	}
-	return (0);
+	while (s[a++] != '\0' && a++ < len)
+	{
+		while (s[a + b] != '\0' && s[a + b] == k[b])
+		{
+			b++;
+			if (k[b] == '\0')
+				return (s + a);
+		}
+		b = 0;
+	}
+	return (NULL);
 }
 
 /*
 int main(void)
 {
-	printf("%d", ft_strncmp("Ola a todos", "Ola a asofew", 10));
+    char to_find[] = "hoje";
+    char str[] = "Ola a todos, hoje estamos aqui";
+    char *result = ft_strnstr(str, to_find, 4);
+
+    printf("%s", result);
 }
 */

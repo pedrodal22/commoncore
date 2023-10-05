@@ -6,14 +6,14 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 15:59:17 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/04 17:41:52 by pfranco-         ###   ########.fr       */
+/*   Updated: 2023/10/05 14:59:02 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stddef.h>
-//#include <stdio.h>
+#include <stddef.h>
+#include <stdio.h>
 
-void	bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
 	int				a;
 	unsigned char	*str;
