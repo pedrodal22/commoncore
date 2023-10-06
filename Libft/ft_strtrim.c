@@ -1,77 +1,85 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/05 15:02:16 by pfranco-          #+#    #+#             */
+/*   Updated: 2023/10/05 16:14:10 by pfranco-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
+#include <stdlib.h>
 #include "libft.h"
 
-char *trim_begin (char *s1_begin, char *set)
-{
-    int i;
-
-    i = 0;
-    if(s1_begin[i] = set[i])
-    {
-        s1_begin[i] = 0;
-        i++;
-    }
-    return(s1_begin);
-}
-
-char *trim_end (char *s1_end, char *set)
-{
-    int i;
-
-    i = ft_strlen(s1_end);
-    a = ft_strlen(set);
-    if(s1_end[i] = set[i])
-    {
-        s1_end[i] = 0;
-        i--;
-    }
-    return(s1_end);
-}
-
-char *ft_strtrim(char const *s1, char const *set)
-{
-    char *s1_begin;
-    char *s1_end;
-    char *final;
-    int i;
-    int a;
-
-    i = 0;
-    a = 0;
-    s1_begin = trim_begin(*s1);
-    s1_end = trim_end(*s1);
-    while(s1_begin == 0)
-    {  
-        i++;
-    } 
-    while(s1_begin != 0)
-    {
-        final[a++] = s1_begin[i++];
-    }
-
-}
-
-
-void	ft_sort_int_tab(int *tab, int size)
+char	*ft_strtrim(char *s1, const char *set)
 {
 	int	i;
 	int	p;
 	int	temp;
+	int size = strlen(set);
 
 	i = 0;
 	while (i < size)
 	{
-		p = i + 1;
-		while (p < size)
+		if (tab[i] > tab[p])
 		{
-			if (tab[i] > tab[p])
-			{
-				temp = tab[i];
-				tab[i] = tab[p];
-				tab[p] = temp;
-			}
-			p++;
+			temp = tab[i];
+			tab[i] = tab[p];
+			tab[p] = temp;
 		}
-		i++;
+		p++;
 	}
 }
+
+/*
+char	*ft_strtrim(char *s1, const char *set)
+{
+	int	i;
+	int start;
+	int end;
+	char *final;
+	int size;
+
+	i = 0;
+	start = 0;
+	end = ft_strlen(s1) - 1;
+	size = end - start + 1;
+	while(s1[start] == *set)
+	{
+		start++;
+	}
+	while(s1[end] == *set)
+	{
+		end--;
+	}
+	final = malloc(end - start + 2);
+	while(i < size && start < end)
+	{
+		final[i] = s1[start];
+		i++;
+		start++;
+	}
+	final[i] = '\0';
+	return(final);
+}
+
+
+int main() {
+    char str[] = "ghrOlá,kk Mugndo!grsdgg";
+    char set[] = "ghr";
+
+    char *resultado = ft_strtrim(str, set);
+
+    if (resultado != NULL) {
+        printf("String resultante: '%s'\n", resultado);
+        free(resultado); // Não se esqueça de liberar a memória alocada
+    } else {
+        printf("Erro na alocação de memória.\n");
+    }
+
+    return 0;
+}
+*/
