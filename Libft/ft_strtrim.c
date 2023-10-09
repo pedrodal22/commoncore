@@ -34,7 +34,7 @@ char    *ft_strtrim(char *s1, const char *set)
         }
         if (s1[i] == set[a])
         {
-            s1[i] = 'A';
+            s1[i] = '\0';
             i++;
             a = 0;
         }
@@ -53,7 +53,7 @@ char    *ft_strtrim(char *s1, const char *set)
         }
         if (s1[s_size - 1] == set[a])
         {
-            s1[s_size - 1] = 'A';
+            s1[s_size - 1] = '\0';
             s_size--;
             a = 0;
         }
@@ -67,12 +67,12 @@ char    *ft_strtrim(char *s1, const char *set)
     a = 0;
     int h;
 
-    while (s1[i] == 'A')
+    while (s1[i] == '\0')
     {
         i++;
         h = i;
     }
-    while (s1[i] != 'A')
+    while (s1[i] != '\0')
     {
         a++;
         i++;
@@ -83,7 +83,7 @@ char    *ft_strtrim(char *s1, const char *set)
         return NULL;
     }
     a = 0;
-    while (s1[h] != 'A')
+    while (s1[h] != '\0')
     {
         final[a] = s1[h];
         a++;
@@ -93,44 +93,13 @@ char    *ft_strtrim(char *s1, const char *set)
     return (final);
 }
 
+/*
 int main() {
-    char input[] = "  ab acHello, abc World! acb ca";
+    char input[] = "  ab acbAHello, ashsb sddsgfd df dfbc World! A acb ca";
     const char set[] = "a bc";
     char *result = ft_strtrim(input, set);
 
     printf("Result: '%s'\n", result);
     return 0;
-}
-
-/*
-char	*ft_strtrim(char *s1, const char *set)
-{
-	int	i;
-	int start;
-	int end;
-	char *final;
-	int size;
-
-	i = 0;
-	start = 0;
-	end = ft_strlen(s1) - 1;
-	size = end - start + 1;
-	while(s1[start] == *set)
-	{
-		start++;
-	}
-	while(s1[end] == *set)
-	{
-		end--;
-	}
-	final = malloc(end - start + 2);
-	while(i < size && start < end)
-	{
-		final[i] = s1[start];
-		i++;
-		start++;
-	}
-	final[i] = '\0';
-	return(final);
 }
 */
