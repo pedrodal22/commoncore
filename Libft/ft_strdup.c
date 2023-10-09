@@ -12,18 +12,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-
-int	ft_strlen(char *src)
-{
-	int	a;
-
-	a = 0;
-	while (src[a] != '\0')
-	{
-		a++;
-	}
-	return (a);
-}
+#include "libft.h"
 
 char	*ft_strdup(char *src)
 {
@@ -41,7 +30,7 @@ char	*ft_strdup(char *src)
 	return (dup);
 }
 
-/*
+
 int main(void)
 {
 	char *str = "Ola a todos";
@@ -54,4 +43,4 @@ int main(void)
 	printf("%s\n", dup);
 	printf("...");
 }
-*/
+

@@ -6,11 +6,11 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:00:02 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/04 15:00:04 by pfranco-         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:58:33 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include <stdio.h>
 
 char	*ft_strlcpy(char *dest, char *src, unsigned int n)
 {

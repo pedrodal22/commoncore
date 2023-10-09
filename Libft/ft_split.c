@@ -1,35 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 15:23:45 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/06 14:34:37 by pfranco-         ###   ########.fr       */
+/*   Created: 2023/10/06 13:40:58 by pfranco-          #+#    #+#             */
+/*   Updated: 2023/10/06 14:09:53 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
 
-int	ft_strlen(const char *str)
+static int count_word(char const *s)
 {
-	int	a;
-
-	a = 0;
-	while (str[a] != '\0')
-	{
-		a++;
-	}
-	return (a);
+    int i;
+    i = 0;
+    
+    while (s[i] != '\0')
+    {
+        i++;
+    }
+    return(i++);
 }
 
-/*
-int	main(void)
+char **ft_split(char const *s, char c)
 {
-      char str[12] = "Ola a todos";
+    int i;
+    int sep_count;
+    char **str;
 
-	printf("O numero de caracteres e: %d", ft_strlen(str));
-	return 0;
+    i = 0;
+    sep_count = 0;
+    while (s[i++] != '\0')
+    {
+        if (s[i] == c)
+        {
+            sep_count++;
+        }
+    }
+
+    
 }
-*/

@@ -6,23 +6,12 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:00:22 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/04 15:00:25 by pfranco-         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:58:28 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-
-int	ft_strlen(char *str)
-{
-	int	con;
-
-	con = 0;
-	while (str[con] != '\0')
-	{
-		con++;
-	}
-	return (con);
-}
+#include "libft.h"
 
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {

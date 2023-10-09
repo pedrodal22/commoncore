@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 19:16:38 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/05 19:34:28 by pfranco-         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:37:11 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,25 @@ char	*itoa(int n)
     }
 	if (n < 0)
 	{
+        str = malloc(len + 2);
 		n = -n;
         len++;
+        str[0] = '-';
 	}
-    str = malloc(len + 1);
-    *str = str + len - 1;
-    *(str + 1) = '\0';
+    else
+    {    
+        str = malloc(len + 1);
+    }    
+    *(str + len) = '\0';
     if (n == 0)
     {
         *str = '0';
     }
 	while (n != 0)
 	{
-		*str = n % 10 + '0';
+		str[len - 1] = n % 10 + '0';
         n /= 10;
-        str--;
+        len--;
 	}
     return (str);
 }
