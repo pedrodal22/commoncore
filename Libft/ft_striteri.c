@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 18:22:53 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/10 16:03:29 by pedro            ###   ########.fr       */
+/*   Created: 2023/10/10 15:27:08 by pedro             #+#    #+#             */
+/*   Updated: 2023/10/10 15:31:36 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <stdlib.h>
+void ft_striteri(char *s, void (*f)(unsigned int,char*))
+{
+	int		i;
 
-int		ft_strlen(const char *str);
-char	*ft_strchr(char *str, int c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char ft_putchar(unsigned int fd, const char c);
-void	ft_putnbr(int fd, int nb);
-
-#endif
+	i = 0;
+	while (s[i] != '\0')
+	{
+		f(i, &s[i]);
+		i++;
+	}
+}

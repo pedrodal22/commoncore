@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 18:22:53 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/10 16:03:29 by pedro            ###   ########.fr       */
+/*   Created: 2023/10/10 15:57:20 by pedro             #+#    #+#             */
+/*   Updated: 2023/10/10 16:03:04 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-int		ft_strlen(const char *str);
-char	*ft_strchr(char *str, int c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char ft_putchar(unsigned int fd, const char c);
-void	ft_putnbr(int fd, int nb);
-
-#endif
+void	ft_putnbr(int fd, int nb)
+{
+	if (nb == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return ;
+	}
+	if (nb < 0)
+	{
+		ft_putchar(fd, '-');
+		nb = -nb;
+	}
+	if (nb > 9)
+	{
+		ft_putnbr(fd, nb / 10);
+		ft_putchar(fd, nb % 10 + '0');
+	}
+	else
+		ft_putchar(fd, nb + '0');
+}
