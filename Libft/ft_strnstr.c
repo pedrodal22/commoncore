@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:28:25 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/19 20:55:07 by pedro            ###   ########.fr       */
+/*   Updated: 2023/11/01 11:01:23 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 			return ((char *)big + a);
 		}
 		a++;
+		b = 0;
 	}
 	return (NULL);
 }

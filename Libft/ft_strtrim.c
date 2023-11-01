@@ -12,124 +12,118 @@
 
 #include "libft.h"
 
-static  int ft_trim_start(const char *set, const char *s1)
+static int	ft_trim_start(const char *set, const char *s1)
 {
-    int    i;
-    int    a;
-    int    k;
-    int    size;
+	int	i;
+	int	a;
+	int	k;
+	int	size;
 
-    i = 0;
-    a = 0;
-    k = 0;
-    size = ft_strlen(set);
-    while (k != 1)
-    {
-        while (*s1 != set[a] && a < size)
-            a++;
-        if (*s1 == set[a])
-        {
-            a = 0;
-            s1++;
-            i++;
-        }
-        else
-            k++;
-    }
-    return (i);
+	i = 0;
+	a = 0;
+	k = 0;
+	size = ft_strlen(set) - 1;
+	while (k != 1)
+	{
+		while (s1[i] != set[a] && a < size)
+			a++;
+		if (s1[i] == set[a])
+		{
+			a = 0;
+			i++;
+		}
+		else
+			k++;
+	}
+	return (i);
 }
 
-static   int ft_trim_end(const char *set, const char *s1)
+static int	ft_trim_end(const char *set, const char *s1)
 {
-    int    i;
-    int    a;
-    int    k;
-    int    size;
-    int size_s1;
+	int	a;
+	int	k;
+	int	size;
+	int	size_s1;
 
-    i = 0;
-    a = 0;
-    k = 0;
-    size = ft_strlen(set);
-    size_s1 = ft_strlen(s1) - 1;
-    while (k != 1)
-    {
-        while (s1[size_s1] != set[a] && a < size)
-        {
-            a++;
-        }
-        if (s1[size_s1] == set[a])
-        {
-            a = 0;
-            size_s1--;
-        }
-        else
-            k++;
-    }
-    return (size_s1);
+	a = 0;
+	k = 0;
+	size = ft_strlen(set);
+	size_s1 = ft_strlen(s1) - 1;
+	while (k != 1)
+	{
+		while (s1[size_s1] != set[a] && a < size)
+		{
+			a++;
+		}
+		if (s1[size_s1] == set[a])
+		{
+			a = 0;
+			size_s1--;
+		}
+		else
+			k++;
+	}
+	return (size_s1);
 }
 
-static char *do_strim_start (char *copy, const char *set, const char *s1)
+static char	*do_strim_start(char *copy, const char *set, const char *s1)
 {
-    int i;
-    int size_s1;
-    int n;
+	int	i;
+	int	size_s1;
+	int	n;
 
-    i = ft_trim_start(set, s1);
-    size_s1 = ft_trim_end(set, s1);
-    n = 0;
-    while (i <= size_s1)
-    {
-        copy[n] = s1[i];
-        n++;
-        i++;
-    }
-    copy[n] = '\0';
-    return (copy);
+	i = ft_trim_start(set, s1);
+	size_s1 = ft_trim_end(set, s1);
+	n = 0;
+	while (i <= size_s1)
+	{
+		copy[n] = s1[i];
+		n++;
+		i++;
+	}
+	copy[n] = '\0';
+	return (copy);
 }
 
-char    *ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-    char    *copy;
-    int trim_start;
-    int trim_end;
+	char	*copy;
+	int		trim_start;
+	int		trim_end;
 
-    if(s1 == NULL || set == NULL)
-        return NULL;
-    trim_start = ft_trim_start(set, s1);
-    if(((unsigned char)s1[0] == '\0' && (unsigned char)set[0] == '\0') || s1[trim_start - 2] == '\0')
-    {
-        copy = malloc(1);
-        if(copy != NULL)
-            copy[0] = '\0';
-        return(copy);
-      return NULL;
-    }
-    if(set != NULL)
-    {
-        trim_end = ft_trim_end(set, s1);
-        copy = malloc(trim_end - trim_start + 2);
-        if(copy != NULL)
-        {
-            copy = do_strim_start(copy, set, s1);
-            return (copy);
-        }
-    }
-    return (NULL);
+	trim_start = ft_trim_start(set, s1);
+	if (((unsigned char)s1[0] == '\0' && (unsigned char)set[0] == '\0')
+		|| trim_start == ft_strlen(s1) || (s1 == NULL || set == NULL))
+	{
+		copy = malloc(1);
+		if (copy != NULL)
+		{
+			copy[0] = '\0';
+			return (copy);
+		}
+		return (NULL);
+	}
+	trim_end = ft_trim_end(set, s1);
+	copy = malloc(trim_end - trim_start + 2);
+	if (copy != NULL)
+	{
+		copy = do_strim_start(copy, set, s1);
+		return (copy);
+	}
+	return (NULL);
 }
 
-int main() {
+/* int main() {
     const char *s1 = "  \t \t \n   \n\n\n\t";
     const char *set = " \n\t";
     char *trimmed = ft_strtrim(s1, set);
 
     if (trimmed != NULL) {
-        printf("String original: \"%s\"\n", s1);
-        printf("String após remoção de espaços no início e no final: \"%s\"\n", trimmed);
-        free(trimmed); // Não se esqueça de liberar a memória alocada
+printf("String após remoção de espaços: \"%s\"\n", trimmed);
     } else {
         printf("A alocação de memória falhou.\n");
     }
 
     return 0;
 }
+ */

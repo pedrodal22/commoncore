@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 16:08:28 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/16 14:36:26 by pfranco-         ###   ########.fr       */
+/*   Updated: 2023/10/30 17:10:07 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	a;
 	int	simb;
@@ -22,17 +22,14 @@ int	ft_atoi(char *str)
 	result = 0;
 	simb = 1;
 	while (str[a] == 32 || (str[a] <= 13 && str[a] >= 9))
+		a++;
+	if (str[a] == '-')
 	{
+		simb *= -1;
 		a++;
 	}
-	while (str[a] == '+' || str[a] == '-')
-	{
-		if (str[a] == '-')
-		{
-			simb *= -1;
-		}
+	else if (str[a] == '+')
 		a++;
-	}
 	while ((str[a] >= '0' && str[a] <= '9'))
 	{
 		result = result * 10 + (str[a] - '0');
@@ -41,7 +38,7 @@ int	ft_atoi(char *str)
 	return (result * simb);
 }
 
-/*
+/*prio 
 int main (void)
 {
 	char str[30] = "+- --168 4684";

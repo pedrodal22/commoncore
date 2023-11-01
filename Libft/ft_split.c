@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:57:46 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/24 12:54:48 by pedro            ###   ########.fr       */
+/*   Updated: 2023/11/01 13:31:47 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,15 @@ static int	nbr_str(const char *s, char c)
 	int	a;
 
 	i = 0;
-	a = 1;
+	a = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] == c)
+		if ((s[i] != c) && (s[i + 1] == c || s[i + 1] == '\0'))
 		{
 			a++;
 		}
 		i++;
 	}
-	a++;
 	return (a);
 }
 
@@ -42,7 +41,7 @@ static char	*get_str(char const *s, char *final, char c)
 	{
 		a++;
 	}
-	final = malloc(sizeof(char) * (a + 1));
+	final = malloc(a + 1);
 	if (final == NULL)
 		return (NULL);
 	while (s[i] != '\0' && s[i] != c)
@@ -62,28 +61,27 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	k = 0;
-	final = malloc(sizeof(char *) * (nbr_str(s, c)));
+	final = malloc(sizeof(char *) * (nbr_str(s, c) + 1));
 	if (final == NULL)
 		return (NULL);
 	while (s[i] != '\0')
 	{
 		if (s[i] != c)
 		{
-			final[k] = get_str((char *) &s[i], final[k], c);
+			final[k] = get_str(&s[i], final[k], c);
 			k++;
-			while (s[i] != '\0' && s[i] != c)
+			while (s[i] != c && s[i] != '\0')
 				i++;
 		}
 		else
 			i++;
 	}
-	final[k++] = NULL;
+	final[k] = NULL;
 	return (final);
 }
 
-/*
-int main() {
-    char const *s = "Esta e uma";
+/* int main() {
+    char const *s = "  tripouille  42  ";
     char c = ' ';
     char **result = ft_split(s, c);
 
@@ -100,4 +98,4 @@ int main() {
 
     return 0;
 }
-*/
+ */

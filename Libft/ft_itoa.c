@@ -6,24 +6,27 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 19:16:38 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/24 13:30:34 by pedro            ###   ########.fr       */
+/*   Updated: 2023/11/01 12:25:49 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int itoa_length(int n)
+static int	itoa_length(int n)
 {
-    int len;
-    
-    len = 0;
-    while (n != 0)
-    {
-        n = n / 10;
-        len++;
-    }
-    len++;
-    return (len);
+	int	len;
+	int	copy;
+
+	len = 0;
+	copy = n;
+	while (n != 0)
+	{
+		n = n / 10;
+		len++;
+	}
+	if (copy <= 0)
+		len++;
+	return (len);
 }
 
 static void	write_nbr(long n, char *final, int *i)
@@ -45,20 +48,17 @@ char	*ft_itoa(int n)
 
 	i = 0;
 	nbr = n;
+	final = malloc((itoa_length(nbr) + 1));
+	if (final == NULL)
+		return (NULL);
 	if (nbr < 0)
 	{
-		final = malloc((itoa_length(nbr) + 1));
-		if (final == NULL)
-			return NULL;
 		final[i] = '-';
-		i += 1;
-		write_nbr(nbr * -1, final, &i);
+		i++;
+		write_nbr((nbr * -1), final, &i);
 	}
 	else
 	{
-		final = malloc((itoa_length(nbr) + 1));
-		if (final == NULL)
-			return NULL;
 		write_nbr(nbr, final, &i);
 	}
 	final[i] = '\0';
@@ -73,4 +73,3 @@ char	*ft_itoa(int n)
     printf("%s \n", result);
     return (0);
 } */
- 
