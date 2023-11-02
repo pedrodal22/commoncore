@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:59:13 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/10/18 15:19:39 by pedro            ###   ########.fr       */
+/*   Updated: 2023/11/02 15:54:19 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*ft_memmove(void *str1, const void *str2, size_t n)
 	{
 		csrc += n;
 		cdest += n;
-		while (n--)
+		while (n-- > i)
 			*--cdest = *--csrc;
 	}
 	else
