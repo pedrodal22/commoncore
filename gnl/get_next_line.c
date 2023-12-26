@@ -19,5 +19,5 @@ char	gnl_ft()
 
 	if(BUFFER_SIZE <= 0)
 		return(NULL);
-    while ()
+    while (read(xx, xx, xx) > 0 )
 }
