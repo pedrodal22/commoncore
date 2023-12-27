@@ -12,12 +12,26 @@
 
 #include "get_next_line.h"
 
-char	gnl_ft()
+char *get_next_line(int fd)
 {
-	static int i;
-	char buffer[BUFFER_SIZE + 1];
+	int i;
+	char *linha;
+	static char buffer[BUFFER_SIZE + 1];
 
-	if(BUFFER_SIZE <= 0)
+	linha = NULL;
+	if(BUFFER_SIZE <= 0 || read(fd, buffer, sizeof(buffer)) < 0)
 		return(NULL);
-    while (read(xx, xx, xx) > 0 )
+	while(buffer[i] != '\n' && buffer[i] != '\0')
+		i++;
+	if (buffer[i] == '\n')
+	{
+		linha = (char *)malloc(i + 1) * sizeof(char);
+		if (linha == NULL)
+			return (NULL);
+		while (*buffer != NULL || read(fd, buffer, BUFFER_SIZE) > 0)
+			linha = ft_strncpy(linha, buffer, i);
+		linha[i] = '\0';
+		return (linha);
+	}
+	return (NULL);
 }
