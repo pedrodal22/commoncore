@@ -6,32 +6,70 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:50:58 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/12/26 16:50:58 by pfranco-         ###   ########.fr       */
+/*   Updated: 2023/12/27 15:55:14 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+void clear(char *c, int index)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	while(c[i])
+	{	
+		if (index != 0 && i >= index)
+		{
+			c[count++] = c[i];
+		}
+		c[i++] = '\0';
+	}
+}
+
+int checkline(char *c)
+{
+	int i;
+
+	i = 0;
+	while(c[i])
+	{	
+		if (c[i] == '\n')
+			return(i + 1);
+		i++;
+	}
+	return(0);
+}
+
 char *get_next_line(int fd)
 {
 	int i;
-	char *linha;
+	char *line;
 	static char buffer[BUFFER_SIZE + 1];
 
-	linha = NULL;
-	if(BUFFER_SIZE <= 0 || read(fd, buffer, sizeof(buffer)) < 0)
+	line = NULL;
+	if(BUFFER_SIZE <= 0)
 		return(NULL);
-	while(buffer[i] != '\n' && buffer[i] != '\0')
-		i++;
-	if (buffer[i] == '\n')
-	{
-		linha = (char *)malloc(i + 1) * sizeof(char);
-		if (linha == NULL)
-			return (NULL);
-		while (*buffer != 0 || read(fd, buffer, BUFFER_SIZE) > 0)
-			linha = ft_strncpy(linha, buffer, i);
-		linha[i] = '\0';
-		return (linha);
+	while (*buffer || read(fd, buffer, BUFFER_SIZE) > 0)
+	{	
+		i = checkline(buffer);
+		printf("%s",buffer);
+		clear(buffer, i);
+		if(i > 0)
+			break;
+		// line = ft_strncpy(linha, buffer, i);
+		
 	}
-	return (NULL);
+	return (line);
+}
+
+int main()
+{
+	int fd = open("j.txt", O_RDONLY);
+	printf("FD: %i\n", (fd));
+
+	printf(" _T1: %s\n", get_next_line(fd));
+	printf(" _T2: %s\n", get_next_line(fd));
 }
