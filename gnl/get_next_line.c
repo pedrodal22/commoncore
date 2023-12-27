@@ -28,7 +28,7 @@ char *get_next_line(int fd)
 		linha = (char *)malloc(i + 1) * sizeof(char);
 		if (linha == NULL)
 			return (NULL);
-		while (*buffer != NULL || read(fd, buffer, BUFFER_SIZE) > 0)
+		while (*buffer != 0 || read(fd, buffer, BUFFER_SIZE) > 0)
 			linha = ft_strncpy(linha, buffer, i);
 		linha[i] = '\0';
 		return (linha);
