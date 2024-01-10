@@ -1,19 +1,44 @@
 #include "get_next_line.h"
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+int ft_strlen(char *str)
 {
-	unsigned int	a;
+	int i;
 
-	a = 0;
-	while (src[a] != '\0' && a < n)
+	i = 0;
+	if(!str)
+		return (0);
+	while(str[i] != '\0' && str[i] != '\n')
+		i++;
+	if(str[i] == '\n')
+		i++;
+	return(i);
+}
+
+char *ft_strjoin(char *line, char *buffer)
+{
+	char *str;
+	int i;
+	int h;
+
+	i = 0;
+	str = malloc(sizeof(char) * (ft_strlen(line) + ft_strlen(buffer) + 1));
+	if(str == NULL)
+		return (NULL);
+	while(*line != '\0')
 	{
-		dest[a] = src[a];
-		a++;
+		str[i] = *line;
+		i++;
+		*line++;
 	}
-	while (a < n)
+	h = 0;
+	while(*buffer != '\0')
 	{
-		dest[a] = '\0';
-		a++;
+		str[i] = buffer[h];
+		if(buffer[h] == '\n')
+			break ;
+		h++;
 	}
-	return (dest);
+	free(line);
+	str[i] = '\0';
+	return (str);
 }

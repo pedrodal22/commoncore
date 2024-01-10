@@ -25,7 +25,8 @@ void clear(char *c, int index)
 		{
 			c[count++] = c[i];
 		}
-		c[i++] = '\0';
+		c[i] = '\0';
+		i++;
 	}
 }
 
@@ -55,11 +56,12 @@ char *get_next_line(int fd)
 	while (*buffer || read(fd, buffer, BUFFER_SIZE) > 0)
 	{	
 		i = checkline(buffer);
-		printf("%s",buffer);
+		line = ft_strjoin(line, buffer);
+		printf("%s", line);
 		clear(buffer, i);
 		if(i > 0)
 			break;
-		// line = ft_strncpy(linha, buffer, i);
+		//TO DO - stop printing after reaching /n
 		
 	}
 	return (line);
