@@ -1,44 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/20 18:37:29 by pedro             #+#    #+#             */
+/*   Updated: 2024/01/20 18:37:29 by pedro            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if(!str)
+	if (!str)
 		return (0);
-	while(str[i] != '\0' && str[i] != '\n')
+	while (str[i] != '\0' && str[i] != '\n')
 		i++;
-	if(str[i] == '\n')
+	if (str[i] == '\n')
 		i++;
-	return(i);
+	return (i);
 }
 
-char *ft_strjoin(char *line, char *buffer)
+char	*ft_strjoin(char *line, char *buffer)
 {
-	char *str;
-	int i;
-	int h;
+	char	*str;
+	int		i;
+	int		h;
 
 	i = 0;
 	str = malloc(sizeof(char) * (ft_strlen(line) + ft_strlen(buffer) + 1));
-	if(str == NULL)
+	if (str == NULL)
 		return (NULL);
-	while(*line != '\0')
+	while (line && line[i])
 	{
-		str[i] = *line;
+		str[i] = line[i];
 		i++;
-		*line++;
 	}
 	h = 0;
-	while(*buffer != '\0')
+	while (buffer[h] != '\0')
 	{
 		str[i] = buffer[h];
-		if(buffer[h] == '\n')
+		i++;
+		if (buffer[h] == '\n')
 			break ;
 		h++;
 	}
-	free(line);
 	str[i] = '\0';
+	free(line);
 	return (str);
 }

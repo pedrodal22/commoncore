@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/26 16:50:58 by pfranco-          #+#    #+#             */
-/*   Updated: 2023/12/27 15:55:14 by pfranco-         ###   ########.fr       */
+/*   Created: 2024/01/20 18:37:49 by pedro             #+#    #+#             */
+/*   Updated: 2024/01/20 18:37:49 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void clear(char *c, int index)
+void	clear(char *c, int index)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
-	while(c[i])
-	{	
+	while (c[i])
+	{
 		if (index != 0 && i >= index)
 		{
 			c[count++] = c[i];
@@ -30,48 +30,58 @@ void clear(char *c, int index)
 	}
 }
 
-int checkline(char *c)
+int	checkline(char *c)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(c[i])
-	{	
+	while (c[i])
+	{
 		if (c[i] == '\n')
-			return(i + 1);
+			return (i + 1);
 		i++;
 	}
-	return(0);
+	return (0);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	int i;
-	char *line;
-	static char buffer[BUFFER_SIZE + 1];
+    char	*line;
+    static	char buffer[BUFFER_SIZE + 1];
+    int		bytesRead;
+	int		i;
 
-	line = NULL;
-	if(BUFFER_SIZE <= 0)
-		return(NULL);
-	while (*buffer || read(fd, buffer, BUFFER_SIZE) > 0)
-	{	
+	*line = NULL;
+	if (BUFFER_SIZE <= 0)
+		return (NULL);
+	while ((bytesRead = read(fd, buffer, BUFFER_SIZE)) > 0 || *buffer)
+	{
 		i = checkline(buffer);
 		line = ft_strjoin(line, buffer);
-		printf("%s", line);
 		clear(buffer, i);
-		if(i > 0)
+		if (i > 0)
 			break;
-		//TO DO - stop printing after reaching /n
-		
+
+	}
+	if (bytesRead < 0)
+	{
+		free(line);
+		return (NULL);
 	}
 	return (line);
 }
 
-int main()
+/* int main(void)
 {
-	int fd = open("j.txt", O_RDONLY);
-	printf("FD: %i\n", (fd));
+    int fd = open("ola.txt", O_RDONLY);
 
-	printf(" _T1: %s\n", get_next_line(fd));
-	printf(" _T2: %s\n", get_next_line(fd));
-}
+    char *line;
+    while ((line = get_next_line(fd)) != NULL)
+    {
+        printf("Line read:%s", line);
+        free(line); // Free the line after processing
+    }
+
+    close(fd);
+    return 0;
+} */
