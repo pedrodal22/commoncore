@@ -10,15 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#inclulde "ft_printf.h"
+#include "ft_printf.h"
 
-static void ((void *) ptr)
+static void (*ptr)
 {
 	uintptr_t i = (uintptr_t) ptr;
-	    char buf[sizeof(endereco) * 2]; // Tamanho suficiente para o endereço como uma string hexadecimal
-
+	    char buf[sizeof(endereco) * 2]; 
     int i = sizeof(endereco) * 2 - 1;
-    buf[i--] = '\n'; // Adiciona uma quebra de linha ao final
+    buf[i--] = '\n';
 
     while (endereco != 0) {
         int remainder = endereco % 16;

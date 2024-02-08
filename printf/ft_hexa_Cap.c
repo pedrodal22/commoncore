@@ -26,11 +26,11 @@ void ft_hexa (int nb)
     if (nb >= 16)
 	{
 		ft_putnbr(nb / 16);
-		resto = ft_putchar(nb % 16);
+		resto = nb % 16;
         if(resto < 10)
-            ft_putchar(resto + 48)
+            ft_putchar(resto + 48);
         else
-            ft_putchar(resto - 10 + 64)
+            ft_putchar(resto - 10 + 64);
         
 	}
 	else

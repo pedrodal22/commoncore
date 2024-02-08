@@ -15,14 +15,13 @@
 int ft_printf(const char *str, ...)
 {
     int i;
-    va_list arg;
-    void args;
-    args = va_start(arg, str);
+    va_list args;
+    va_start(args, str);
 
     i = 0;
-    if(str == NULL)
-		return (NULL);
-    while(str[i] != NULL)
+    if(str == '\0')
+		return ('\0');
+    while(str[i] != '\0')
     {
         if(str[i] == '%' && str[i + 1] == ('c' || 's' || 'p' || 'd' || 'i' 
             || 'u' || 'x' || 'X' || '%'))
@@ -39,17 +38,17 @@ int ft_printf(const char *str, ...)
 void ft_conv(char *str, int i, va_list args)
 {
 	if(str[i] == 'c')
-		ft_putchar(va_arg(args));
+		ft_putchar(va_arg(args, int));
     else if  (str[i] == 's')
-        ft_putstr(va_arg(args));
+        ft_putstr(va_arg(args, const char *));
     else if (str[i] == 'd' || str[i] == 'i') //falta o str[i] == 'p'
-        ft_putnbr(va_arg(args));
+        ft_putnbr(va_arg(args, int));
     else if (str[i] == 'u')
-        ft_unsint(va_arg(args));
+        ft_unsint(va_arg(args, unsigned int));
     else if(str[i] == 'x')
-        ft_hexa(va_arg(args));
+        ft_hexa(va_arg(args, unsigned int));
     else if(str[i] == 'X')
-        ft_hexa_Cap(va_arg(args));
+        ft_hexa_Cap(va_arg(args, unsigned int));
     else if(str[i] == '%')
         ft_putchar('%');
 }
