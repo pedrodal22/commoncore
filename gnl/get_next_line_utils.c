@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 18:37:29 by pedro             #+#    #+#             */
-/*   Updated: 2024/01/20 18:37:29 by pedro            ###   ########.fr       */
+/*   Created: 2024/01/26 12:38:25 by pfranco-          #+#    #+#             */
+/*   Updated: 2024/02/06 12:32:12 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_strjoin(char *line, char *buffer)
 	i = 0;
 	str = malloc(sizeof(char) * (ft_strlen(line) + ft_strlen(buffer) + 1));
 	if (str == NULL)
-		return (NULL);
+		return (line);
 	while (line && line[i])
 	{
 		str[i] = line[i];

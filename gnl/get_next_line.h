@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 18:37:38 by pedro             #+#    #+#             */
-/*   Updated: 2024/01/20 18:37:38 by pedro            ###   ########.fr       */
+/*   Created: 2024/01/26 12:39:25 by pfranco-          #+#    #+#             */
+/*   Updated: 2024/01/26 12:39:25 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 2
 # endif
 
 # include <unistd.h>
@@ -22,6 +22,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <string.h>
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n);
 char	*get_next_line(int fd);

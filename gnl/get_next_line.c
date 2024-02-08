@@ -3,41 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 18:37:49 by pedro             #+#    #+#             */
-/*   Updated: 2024/01/20 18:37:49 by pedro            ###   ########.fr       */
+/*   Created: 2023/12/26 16:50:58 by pfranco-          #+#    #+#             */
+/*   Updated: 2024/02/08 14:50:05 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "get_next_line.h"
 
-void	clear(char *c, int index)
+void	clear(char *buffer, int index)
 {
 	int	i;
 	int	count;
 
 	i = 0;
 	count = 0;
-	while (c[i])
+	while (buffer[i])
 	{
 		if (index != 0 && i >= index)
-		{
-			c[count++] = c[i];
-		}
-		c[i] = '\0';
-		i++;
+			buffer[count++] = buffer[i];
+		buffer[i++] = '\0';
 	}
+	printf("1(%s)\n", buffer);
 }
 
-int	checkline(char *c)
+int	checkline(char *buffer)
 {
 	int	i;
-
+	// limpar buffer a zeros e mover informacao depois do newline
 	i = 0;
-	while (c[i])
+	while (buffer[i])
 	{
-		if (c[i] == '\n')
+		if (buffer[i] == '\n')
 			return (i + 1);
 		i++;
 	}
@@ -51,20 +50,24 @@ char	*get_next_line(int fd)
     int		bytesRead;
 	int		i;
 
-	*line = NULL;
-	if (BUFFER_SIZE <= 0)
+	line = NULL;
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd >= FOPEN_MAX)
 		return (NULL);
 	while ((bytesRead = read(fd, buffer, BUFFER_SIZE)) > 0 || *buffer)
 	{
 		i = checkline(buffer);
+		//printf("buffer antes de ser limpo: |%s|\n", buffer);
 		line = ft_strjoin(line, buffer);
 		clear(buffer, i);
+		//printf("buffer depois de ser limpo: |%s|\n", buffer);
 		if (i > 0)
 			break;
-
 	}
+	i = 0;
 	if (bytesRead < 0)
 	{
+		while (buffer[i])
+			buffer[i] = 0;
 		free(line);
 		return (NULL);
 	}
@@ -78,10 +81,19 @@ char	*get_next_line(int fd)
     char *line;
     while ((line = get_next_line(fd)) != NULL)
     {
-        printf("Line read:%s", line);
-        free(line); // Free the line after processing
+        printf("%s", line);
+        free(line);
     }
 
-    close(fd);
+    // close(fd);
     return 0;
 } */
+
+
+int main(void)
+{
+
+	(clear(strdup("ab"), checkline("ab")));
+	(clear(strdup("\nc"), checkline("\nc")));
+	(clear(strdup("de"), checkline("de")));
+}
