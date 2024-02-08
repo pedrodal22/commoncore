@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:38:25 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/02/06 12:32:12 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:43:41 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,21 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
+int	checkline(char *buffer)
+{
+	int	i;
+
+	i = 0;
+	while (buffer[i])
+	{
+		if (buffer[i] == '\n')
+			return (i + 1);
+		i++;
+	}
+	return (0);
+}
+
+
 char	*ft_strjoin(char *line, char *buffer)
 {
 	char	*str;
@@ -33,7 +48,7 @@ char	*ft_strjoin(char *line, char *buffer)
 	int		h;
 
 	i = 0;
-	str = malloc(sizeof(char) * (ft_strlen(line) + ft_strlen(buffer) + 1));
+	str = malloc(sizeof(char) * ft_strlen(line) + ft_strlen(buffer) + 1);
 	if (str == NULL)
 		return (line);
 	while (line && line[i])
@@ -54,3 +69,20 @@ char	*ft_strjoin(char *line, char *buffer)
 	free(line);
 	return (str);
 }
+
+void	clear(char *buffer, int index)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (buffer[i])
+	{
+		if (index != 0 && i >= index)
+			buffer[count++] = buffer[i];
+		buffer[i++] = '\0';
+	}
+}
+
+
