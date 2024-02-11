@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -12,9 +13,9 @@
 
 #include "ft_printf.h"
 
-void ft_hexa (int nb)
+void ft_hexa (long long int nb)
 {
-    int resto;
+    long long int resto;
 
     if (!nb)
         return ;
@@ -24,15 +25,18 @@ void ft_hexa (int nb)
         nb *= -1;
     }
     if (nb >= 16)
-	{
-		ft_putnbr(nb / 16);
-		resto = nb % 16;
+    {
+        ft_hexa(nb / 16);
+        resto = nb % 16;
         if(resto < 10)
             ft_putchar(resto + 48);
         else
-            ft_putchar(resto - 10 + 96);
+            ft_putchar(resto - 10 + 'a');
         
-	}
-	else
-		ft_putchar(nb + '0');
+    }
+    else
+        if (nb < 10)
+            ft_putchar(nb + '0');
+        else
+            ft_putchar(nb - 10 + 'a');
 }
