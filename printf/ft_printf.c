@@ -11,18 +11,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void ft_conv(char *str, int i, va_list args)
 {
-	if(str[i] == 'c')
-		ft_putchar(va_arg(args, int));
+	if (str[i] == 'c')
+    {
+        ft_putchar(va_arg(args, int));
+    }
     else if  (str[i] == 's')
         ft_putstr(va_arg(args, const char *));
-    else if (str[i] == 'd' || str[i] == 'i') //falta o str[i] == 'p'
+    else if (str[i] == 'd' || str[i] == 'i') 
         ft_putnbr(va_arg(args, int));
     else if (str[i] == 'p')
-        ft_ptr(va_arg(args, unsigned int));
+        ft_ptr(va_arg(args, void *));
     else if (str[i] == 'u')
         ft_unsint(va_arg(args, unsigned int));
     else if(str[i] == 'x')
@@ -40,16 +42,22 @@ int ft_printf(const char *str, ...)
     va_start(args, str);
 
     i = 0;
-    if(str[0] == '\0')
-		return ('\0');
+    if(str == NULL || str[0] == '\0')
+    {
+        va_end(args);
+		return (0);
+    }
     while(str[i] != '\0')
     {
-        if(str[i] == '%' && str[i + 1] == ('c' || 's' || 'p' || 'd' || 'i' 
-            || 'u' || 'x' || 'X' || '%'))
-            ft_conv(*str, i++, args);
+        if(str[i] == '%' && strchr("csdiupxX%", str[i + 1]) != NULL)
+        {
+            ft_conv((char *)str, i + 1, args);
+            i++;
+        }
         else
             ft_putchar(str[i]);
         i++;
     }
     va_end(args);
+    return(0);
 }

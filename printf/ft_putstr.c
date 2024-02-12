@@ -11,9 +11,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-void	ft_putstr(char *str)
+void	ft_putstr(const char *str)
 {
 	int	a;
 

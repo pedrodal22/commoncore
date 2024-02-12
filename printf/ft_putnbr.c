@@ -11,7 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void	ft_putnbr(int nb)
 {
@@ -33,10 +33,3 @@ void	ft_putnbr(int nb)
 	else
 		ft_putchar(nb + '0');
 }
-
-/*
-int main (void)
-{
-	ft_putnbr(213);
-}
-*/

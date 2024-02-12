@@ -17,15 +17,16 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <string.h>
 
-void    ft_hexa_Cap(long long int);
-void    ft_hexa(long long int);
+void    ft_hexa_Cap(long long int nb);
+void    ft_hexa(long long int nb);
 int		ft_printf(const char *str, ...);
 void    ft_conv(char *str, int i, va_list args);
 void    ft_ptr(void *ptr);
 void	ft_putchar(char c);
 void	ft_putnbr(int nb);
-void	ft_putstr(char *str);
-void ft_unsint(unsigned int nb);
+void	ft_putstr(const char *str);
+void    ft_unsint(unsigned int nb);
 
 #endif

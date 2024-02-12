@@ -20,5 +20,4 @@ void ft_ptr(void *ptr)
 
     unsigned long long pointer = (unsigned long)ptr;
     ft_hexa_Cap(pointer);
-    return (0);
 }
