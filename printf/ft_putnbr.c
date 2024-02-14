@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:44:30 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/02/14 15:33:49 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:25:22 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_putnbr(int nb)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (nb == -2147483648)
@@ -34,5 +34,5 @@ int	ft_putnbr(int nb)
 	}
 	else
 		count += ft_putchar(nb + '0');
-	return(count);
+	return (count);
 }

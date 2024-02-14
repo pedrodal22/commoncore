@@ -12,33 +12,31 @@
 
 #include "ft_printf.h"
 
-int ft_hexa_Cap (long long int nb)
+int	ft_hexa_cap(long long int nb)
 {
-    int count;
-    long long int resto;
+	int				count;
+	long long int	resto;
 
-    count = 0;
-    if (!nb)
-        return (0);
-    if (nb < 0)
-    {
-        count += ft_putchar('-');
-        nb *= -1;
-    }
-    if (nb >= 16)
-    {
-        count += ft_hexa_Cap(nb / 16);
-        resto = nb % 16;
-        if(resto < 10)
-            count += ft_putchar(resto + 48);
-        else
-            count += ft_putchar(resto - 10 + 'A');
-        
-    }
-    else
-        if (nb < 10)
-            count += ft_putchar(nb + '0');
-        else
-            count += ft_putchar(nb - 10 + 'A');
-    return (count);
+	count = 0;
+	if (!nb)
+		return (0);
+	if (nb < 0)
+		count += ft_negative_nb(&nb);
+	if (nb >= 16)
+	{
+		count += ft_hexa_cap(nb / 16);
+		resto = nb % 16;
+		if (resto < 10)
+			count += ft_putchar(resto + 48);
+		else
+			count += ft_putchar(resto - 10 + 'A');
+	}
+	else
+	{
+		if (nb < 10)
+			count += ft_putchar(nb + '0');
+		else
+			count += ft_putchar(nb - 10 + 'A');
+	}
+	return (count);
 }

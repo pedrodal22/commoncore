@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-int ft_unsint(unsigned int nb)
+int	ft_unsint(unsigned int nb)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (!nb)
@@ -28,5 +28,5 @@ int ft_unsint(unsigned int nb)
 	}
 	else
 		count += ft_putchar(nb + '0');
-	return(count);
+	return (count);
 }

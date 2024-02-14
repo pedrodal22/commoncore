@@ -12,20 +12,20 @@
 
 #include "ft_printf.h"
 
-int ft_ptr(void *ptr)
+int	ft_ptr(void *ptr)
 {
-    int count;
+	int			count;
+	uintptr_t	pointer;
 
-    count = 0;
-    if (ptr == NULL)
-    {
-        ft_putstr("(nil)");
-        return(5);
-    }
-    count += ft_putchar('0');
-    count += ft_putchar('x');
-
-    uintptr_t pointer = (uintptr_t)ptr;
-    count += ft_hexa(pointer);
-    return(count);
+	pointer = (uintptr_t)ptr;
+	count = 0;
+	if (ptr == NULL)
+	{
+		ft_putstr("(nil)");
+		return (5);
+	}
+	count += ft_putchar('0');
+	count += ft_putchar('x');
+	count += ft_hexa(pointer);
+	return (count);
 }
