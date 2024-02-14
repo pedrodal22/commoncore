@@ -1,23 +1,31 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_ptr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 23:51:17 by pedro             #+#    #+#             */
-/*   Updated: 2024/02/10 23:51:18 by pedro            ###   ########.fr       */
+/*   Created: 2023/12/04 19:30:41 by marvin            #+#    #+#             */
+/*   Updated: 2023/12/04 19:30:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_ptr(void *ptr)
+int ft_ptr(void *ptr)
 {
-    ft_putchar('0');
-    ft_putchar('x');
+    int count;
+
+    count = 0;
+    if (ptr == NULL)
+    {
+        ft_putstr("(nil)");
+        return(5);
+    }
+    count += ft_putchar('0');
+    count += ft_putchar('x');
 
     uintptr_t pointer = (uintptr_t)ptr;
-    ft_hexa(pointer);
+    count += ft_hexa(pointer);
+    return(count);
 }

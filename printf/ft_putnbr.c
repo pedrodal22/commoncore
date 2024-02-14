@@ -1,35 +1,38 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:44:30 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/02/11 00:31:17 by pedro            ###   ########.fr       */
+/*   Updated: 2024/02/14 15:33:49 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr(int nb)
+int	ft_putnbr(int nb)
 {
+	int count;
+
+	count = 0;
 	if (nb == -2147483648)
 	{
 		write(1, "-2147483648", 11);
-		return ;
+		return (11);
 	}
 	if (nb < 0)
 	{
-		ft_putchar('-');
+		count += ft_putchar('-');
 		nb = -nb;
 	}
 	if (nb > 9)
 	{
-		ft_putnbr(nb / 10);
-		ft_putchar(nb % 10 + '0');
+		count += ft_putnbr(nb / 10);
+		count += ft_putchar(nb % 10 + '0');
 	}
 	else
-		ft_putchar(nb + '0');
+		count += ft_putchar(nb + '0');
+	return(count);
 }
