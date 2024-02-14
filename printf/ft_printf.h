@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <string.h>
+# include <stdint.h>
 
 void    ft_hexa_Cap(long long int nb);
 void    ft_hexa(long long int nb);

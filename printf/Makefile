@@ -6,7 +6,7 @@
 #    By: pedro <pedro@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/02 18:51:51 by pedro             #+#    #+#              #
-#    Updated: 2024/02/12 10:54:24 by pedro            ###   ########.fr        #
+#    Updated: 2024/02/12 12:10:30 by pedro            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJECTS_SRC = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): 
-	cc $(FLAGS) $(SRC)
+	cc -c $(FLAGS) $(SRC)
 	ar rc $(NAME)
 
 clean:
@@ -31,5 +31,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-

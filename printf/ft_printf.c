@@ -2,7 +2,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printft.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,13 +16,11 @@
 void ft_conv(char *str, int i, va_list args)
 {
 	if (str[i] == 'c')
-    {
         ft_putchar(va_arg(args, int));
-    }
     else if  (str[i] == 's')
         ft_putstr(va_arg(args, const char *));
     else if (str[i] == 'd' || str[i] == 'i') 
-        ft_putnbr(va_arg(args, int));
+        ft_putnbr(va_arg(args, unsigned int));
     else if (str[i] == 'p')
         ft_ptr(va_arg(args, void *));
     else if (str[i] == 'u')
@@ -60,4 +58,13 @@ int ft_printf(const char *str, ...)
     }
     va_end(args);
     return(0);
+}
+
+int main(void)
+{
+    char chr = 'A';
+
+    printf("Expected output:   %c %p %i %p.\n", chr, chr, 1353, (void *)255105);
+    ft_printf("Testing ft_printf: %c %p %i %p.\n", chr, chr, 1353, 255105);
+    return 0;
 }

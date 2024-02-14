@@ -18,6 +18,6 @@ void ft_ptr(void *ptr)
     ft_putchar('0');
     ft_putchar('x');
 
-    unsigned long long pointer = (unsigned long)ptr;
-    ft_hexa_Cap(pointer);
+    uintptr_t pointer = (uintptr_t)ptr;
+    ft_hexa(pointer);
 }
