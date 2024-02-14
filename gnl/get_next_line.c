@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:50:58 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/02/08 16:56:22 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:35:53 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ char	*get_next_line(int fd)
 	int			index;
 
 	line = NULL;
-	if (BUFFER_SIZE <= 0 || fd < 0 || fd >= FOPEN_MAX)
+	if (BUFFER_SIZE <= 0 || fd >= FOPEN_MAX || read(fd, 0, 0) < 0)
+	{
+		clear(buffer, 0);
 		return (NULL);
+	}
 	while (*buffer || read(fd, buffer, BUFFER_SIZE) > 0)
 	{
 		index = checkline(buffer);
@@ -29,18 +32,16 @@ char	*get_next_line(int fd)
 		if (index > 0)
 			break ;
 	}
-	index = 0;
 	if (line == NULL)
 	{
-		while (buffer[index])
-			buffer[index] = 0;
-		free(line);
+		while (buffer[0])
+			buffer[0] = 0;
 		return (NULL);
 	}
 	return (line);
 }
 
-int main(void)
+/* int main(void)
 {
     int fd = open("a.txt", O_RDONLY);
 
@@ -52,4 +53,4 @@ int main(void)
     }
 	close(fd);
     return 0;
-}
+} */

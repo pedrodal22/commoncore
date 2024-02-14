@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:38:25 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/02/08 16:43:41 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:07:52 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	checkline(char *buffer)
 	}
 	return (0);
 }
-
 
 char	*ft_strjoin(char *line, char *buffer)
 {
@@ -84,5 +83,3 @@ void	clear(char *buffer, int index)
 		buffer[i++] = '\0';
 	}
 }
-
-

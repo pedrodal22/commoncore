@@ -28,5 +28,5 @@ char	*get_next_line(int fd);
 char	*ft_strjoin(char *line, char *buffer);
 int		ft_strlen(char *str);
 void	clear(char *buffer, int index);
-int     checkline(char *buffer);
+int		checkline(char *buffer);
 #endif
