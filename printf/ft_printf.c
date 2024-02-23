@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printft.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -21,8 +21,8 @@ int	ft_conv(char *str, int i, va_list args)
 		count += ft_putchar(va_arg(args, int));
 	else if (str[i] == 's')
 		count += ft_putstr(va_arg(args, const char *));
-	else if (str[i] == 'd' || str[i] == 'i') 
-		count += ft_putnbr(va_arg(args, unsigned int));
+	else if (str[i] == 'd' || str[i] == 'i')
+		count += ft_putnbr(va_arg(args, int));
 	else if (str[i] == 'p')
 		count += ft_ptr(va_arg(args, void *));
 	else if (str[i] == 'u')

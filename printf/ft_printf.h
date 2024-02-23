@@ -19,8 +19,8 @@
 # include <string.h>
 # include <stdint.h>
 
-int	ft_hexa_cap(long long int nb);
-int	ft_hexa(long long int nb);
+int	ft_hexa_cap(unsigned int nb);
+int	ft_hexa(unsigned int nb);
 int	ft_printf(const char *str, ...);
 int	ft_conv(char *str, int i, va_list args);
 int	ft_ptr(void *ptr);
@@ -28,6 +28,5 @@ int	ft_putchar(char c);
 int	ft_putnbr(int nb);
 int	ft_putstr(const char *str);
 int	ft_unsint(unsigned int nb);
-int	ft_negative_nb(long long int *nb);
 
 #endif

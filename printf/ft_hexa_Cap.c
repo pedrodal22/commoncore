@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hexa.c                                          :+:      :+:    :+:   */
+/*   ft_hexa_Cap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 20:21:37 by marvin            #+#    #+#             */
-/*   Updated: 2023/11/28 20:21:37 by marvin           ###   ########.fr       */
+/*   Created: 2024/02/23 19:30:37 by pedro             #+#    #+#             */
+/*   Updated: 2024/02/23 19:30:37 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_hexa_cap(long long int nb)
+int	ft_hexa_cap(unsigned int nb)
 {
 	int				count;
-	long long int	resto;
+	unsigned int	resto;
 
 	count = 0;
-	if (!nb)
-		return (0);
-	if (nb < 0)
-		count += ft_negative_nb(&nb);
 	if (nb >= 16)
 	{
 		count += ft_hexa_cap(nb / 16);

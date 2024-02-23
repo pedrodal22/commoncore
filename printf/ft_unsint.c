@@ -17,10 +17,6 @@ int	ft_unsint(unsigned int nb)
 	int	count;
 
 	count = 0;
-	if (!nb)
-	{
-		return (0);
-	}
 	if (nb > 9)
 	{
 		count += ft_putnbr(nb / 10);

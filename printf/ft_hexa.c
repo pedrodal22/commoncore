@@ -12,23 +12,12 @@
 
 #include "ft_printf.h"
 
-int	ft_negative_nb(long long int *nb)
-{
-	ft_putchar('-');
-	*nb *= -1;
-	return (1);
-}
-
-int	ft_hexa(long long int nb)
+int	ft_hexa(unsigned int nb)
 {
 	int				count;
-	long long int	resto;
+	unsigned int	resto;
 
 	count = 0;
-	if (!nb)
-		return (0);
-	if (nb < 0)
-		count += ft_negative_nb(&nb);
 	if (nb >= 16)
 	{
 		count += ft_hexa(nb / 16);
