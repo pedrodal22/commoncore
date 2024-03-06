@@ -24,6 +24,7 @@ int	ft_hexa(unsigned int nb);
 int	ft_printf(const char *str, ...);
 int	ft_conv(char *str, int i, va_list args);
 int	ft_ptr(void *ptr);
+int	ft_ptr_hexa(unsigned long int nb);
 int	ft_putchar(char c);
 int	ft_putnbr(int nb);
 int	ft_putstr(const char *str);

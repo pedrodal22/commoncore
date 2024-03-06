@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <limits.h>
 
 int	ft_ptr(void *ptr)
 {
@@ -26,6 +27,46 @@ int	ft_ptr(void *ptr)
 	}
 	count += ft_putchar('0');
 	count += ft_putchar('x');
-	count += ft_hexa(pointer);
+	count += ft_ptr_hexa(pointer);
 	return (count);
 }
+
+int	ft_ptr_hexa(uintptr_t nb)
+{
+	int				count;
+	uintptr_t		resto;
+
+	count = 0;
+	if (nb >= 16)
+	{
+		count += ft_ptr_hexa(nb / 16);
+		resto = nb % 16;
+		if (resto < 10)
+			count += ft_putchar(resto + 48);
+		else
+			count += ft_putchar(resto - 10 + 'a');
+	}
+	else
+	{
+		if (nb < 10)
+			count += ft_putchar(nb + '0');
+		else
+			count += ft_putchar(nb - 10 + 'a');
+	}
+	return (count);
+}
+
+/* int main() {
+    // Testing the ft_ptr function
+    ft_ptr((void *) LONG_MIN);
+    ft_putchar(' ');
+    ft_ptr((void *) LONG_MAX);
+    ft_putchar('\n');
+
+    ft_ptr((void *) ULONG_MAX);
+    ft_putchar(' ');
+    ft_ptr((void *) -ULONG_MAX);
+    ft_putchar('\n');
+
+    return 0;
+} */
