@@ -55,18 +55,3 @@ int	ft_ptr_hexa(uintptr_t nb)
 	}
 	return (count);
 }
-
-/* int main() {
-    // Testing the ft_ptr function
-    ft_ptr((void *) LONG_MIN);
-    ft_putchar(' ');
-    ft_ptr((void *) LONG_MAX);
-    ft_putchar('\n');
-
-    ft_ptr((void *) ULONG_MAX);
-    ft_putchar(' ');
-    ft_ptr((void *) -ULONG_MAX);
-    ft_putchar('\n');
-
-    return 0;
-} */
