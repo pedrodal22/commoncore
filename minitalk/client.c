@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 17:20:30 by pedro             #+#    #+#             */
-/*   Updated: 2024/04/25 12:14:13 by pedro            ###   ########.fr       */
+/*   Updated: 2024/04/26 11:56:34 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	send_bits(char c, int pid)
 	i = 0;
 	while (i < 8)
 	{
-		if (c & 0x01)
+		if (c & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
@@ -61,14 +61,8 @@ int	main(int argc, char **argv)
 
 	i = 0;
 	pid = pid_check(argv[1]);
-	if (argc != 3 || pid == -1)
-	{
-		if (argc != 3)
-			ft_printf("Os argumentos estão mal\n");
-		else
-			ft_printf("O PID está mal\n");
+	if (argc != 3 || pid < 0)
 		return (1);
-	}
 	while (argv[2][i] != '\0')
 	{
 		send_bits(argv[2][i], pid);

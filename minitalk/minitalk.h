@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 22:19:16 by pedro             #+#    #+#             */
-/*   Updated: 2024/04/25 13:00:45 by pedro            ###   ########.fr       */
+/*   Updated: 2024/04/26 11:55:07 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_putnbr(int nb);
 char	*ft_strchr(const char *str, int c);
 int		ft_conv(char *str, int i, va_list args);
 int		ft_printf(const char *str, ...);
-char	*store_bit_value(int signal);
 void	show_chr(int signal);
 
 #endif

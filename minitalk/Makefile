@@ -6,7 +6,7 @@
 #    By: pedro <pedro@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 19:06:41 by pedro             #+#    #+#              #
-#    Updated: 2024/04/25 02:03:32 by pedro            ###   ########.fr        #
+#    Updated: 2024/04/26 11:48:33 by pedro            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,12 +27,10 @@ OBJS = $(OBJ_SERVER) $(OBJ_CLIENT)
 all: $(SERVER) $(CLIENT)
 
 $(SERVER): $(OBJ_SERVER)
-	@cc $(FLAGS) $(OBJ_SERVER) -o $(SERVER)
-	@echo "Server compilado."
+	cc $(FLAGS) $(OBJ_SERVER) -o $(SERVER)
 
 $(CLIENT): $(OBJ_CLIENT)
-	@cc $(FLAGS) $(OBJ_CLIENT) -o $(CLIENT)
-	@echo "Cient compilado."
+	cc $(FLAGS) $(OBJ_CLIENT) -o $(CLIENT)
 	
 clean:
 	rm -f $(OBJS)
