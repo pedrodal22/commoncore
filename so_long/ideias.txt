@@ -1,0 +1,9 @@
+poço a servir como armadilhas. se o player tocar lá, destruir e free do mapa
+
+count numa variável na struct .h para contar o número de coletáveis apanhados. se count for igual ao número de coletáveis, destruir e dar free do mapa
+
+um templo com a porta fechada. quando o número de coletáveis foi total, a porta abre, e o player consegue sair
+
+falta mudar o tamanho para 64 ou 32 pixeis. mudar o icon da bala. criar o icon do poço. criar o icon da saída.  TRATAR DOS LEAKS DE MEMÓRIA. JÁ TENHO FUNÇÃO DE CLEAN MAP NO FICHEIRO MEM ALLOC, ACHO 
+
+possível problema de memória quando ando com o boneco. meto a imagem do chao por cima, mas nao apago a imagem anterior. talvez o erro venha daí 

@@ -1,0 +1,2 @@
+cc -Imlx_linux/minilibx-linux so_long.c -o so_long -Lmlx_linux/minilibx-linux -lmlx -lX11 -lXext -lm
+
