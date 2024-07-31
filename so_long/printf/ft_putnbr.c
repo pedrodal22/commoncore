@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/19 01:15:51 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/31 15:37:13 by pfranco-         ###   ########.fr       */
+/*   Created: 2024/02/23 19:22:27 by pedro             #+#    #+#             */
+/*   Updated: 2024/07/31 14:30:26 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
-int	tecla(int keysym, t_data *dados)
+int	ft_putnbr(int nb)
 {
-	int	px;
+	int	count;
 
-	if (keysym == 65307)
-		destruir(dados);
-	if (keysym == 'w' || keysym == 'd' || keysym == 'a' || keysym == 's')
+	count = 0;
+	if (nb == -2147483648)
 	{
-		px = moves_all(keysym);
-		moves(dados, keysym, px);
+		write(1, "-2147483648", 11);
+		return (11);
 	}
-	return (0);
+	if (nb < 0)
+	{
+		count += ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb > 9)
+	{
+		count += ft_putnbr(nb / 10);
+		count += ft_putchar(nb % 10 + '0');
+	}
+	else
+		count += ft_putchar(nb + '0');
+	return (count);
 }
-
-int	destruir(t_data *dados)
-{
-	mlx_destroy_window(dados->mlx_ptr, dados->win_ptr);
-	mlx_destroy_display(dados->mlx_ptr);
-	free(dados->mlx_ptr);
-	exit (0);
-	return (0);
-}
-

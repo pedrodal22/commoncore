@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 17:46:04 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/20 16:00:03 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:12:55 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	check_all(int argc, char **argv, t_data *dados)
 	int	a;
 
 	a = check_nome_ficheiro(argc, argv);
-	printf("%i\n", a);
 	a += check_mapa_valido(argv, dados);
 	if (a != 0)
 		return (1);
@@ -83,7 +82,7 @@ int	check_mapa_valido(char **argv, t_data *dados)
 		return (1);
 	elementos_mapa(dados, &player_count, &exit_count, fd);
 	close(fd);
-	if (player_count != 1 || exit_count != 1 || dados->colet_total < 1)
+	if (player_count != 1 || exit_count != 1 || dados->colet_total < 1 || dados->num_enemies > 1)
 		return (1);
 	return (0);
 }

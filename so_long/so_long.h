@@ -20,13 +20,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <string.h>
-
-typedef struct s_inimigo
-{
-	int x;
-	int y;
-	int direction;
-} t_enemy;
+# include <stdarg.h>
+# include <stdint.h>
 
 typedef struct s_data
 {
@@ -59,7 +54,10 @@ typedef struct s_data
 	int		colet_total;
 	int		colet_count;
 	int		num_enemies;
-	t_enemy	*enemies;
+	int		enemy_x;
+	int		enemy_y;
+	int 	enemy_direction;
+	int		count_moves;
 } t_data;
 
 
@@ -93,8 +91,8 @@ void 	find_player(t_data *dados, char *map_name);
 void	flood(t_data *dados, int y, int x);
 int 	check_walls(t_data *dados);
 
-void free_map(t_data *dados);
-void map_images(t_data *dados);
+void 	free_map(t_data *dados);
+void 	map_images(t_data *dados);
 void create_images(t_data *dados, int largura, int altura);
 
 void	map_images(t_data *dados);
@@ -110,8 +108,27 @@ void 	free_all(t_data *dados);
 void 	free_map_flood(t_data *dados);
 void 	free_images(t_data *dados);
 void 	game_over(t_data *dados);
-int game_loop(t_data *dados);
-void inimigos_init(t_data *dados);
-int move_inimigos(t_data *dados);
+int 	game_loop(t_data *dados);
+
+void 	inimigos_init(t_data *dados);
+int 	move_inimigos(t_data *dados);
+void 	move_inimigos_ws(t_data *dados);
+void 	move_inimigos_ad(t_data *dados);
+
+int		ft_hexa_cap(unsigned int nb);
+int		ft_hexa(unsigned int nb);
+int		ft_printf(const char *str, ...);
+int		ft_conv(char *str, int i, va_list args);
+int		ft_ptr(void *ptr);
+int		ft_ptr_hexa(unsigned long int nb);
+int		ft_putchar(char c);
+int		ft_putnbr(int nb);
+int		ft_putstr(const char *str);
+int		ft_unsint(unsigned int nb);
+char	*ft_strchr(const char *str, int c);
+char	*ft_itoa(int n);
+void	display_moves(t_data *dados);
+void initialize_data(t_data *dados);
+
 
 #endif

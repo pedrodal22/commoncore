@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/19 01:15:51 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/31 15:37:13 by pfranco-         ###   ########.fr       */
+/*   Created: 2023/10/04 15:01:32 by pfranco-          #+#    #+#             */
+/*   Updated: 2024/07/31 14:32:46 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
-int	tecla(int keysym, t_data *dados)
+char	*ft_strchr(const char *str, int c)
 {
-	int	px;
+	int	i;
 
-	if (keysym == 65307)
-		destruir(dados);
-	if (keysym == 'w' || keysym == 'd' || keysym == 'a' || keysym == 's')
+	i = 0;
+	while (str[i])
 	{
-		px = moves_all(keysym);
-		moves(dados, keysym, px);
+		i++;
+	}
+	while (i >= 0)
+	{
+		if (str[i] == (char )c)
+			return ((char *)&str[i]);
+		i--;
 	}
 	return (0);
 }
-
-int	destruir(t_data *dados)
-{
-	mlx_destroy_window(dados->mlx_ptr, dados->win_ptr);
-	mlx_destroy_display(dados->mlx_ptr);
-	free(dados->mlx_ptr);
-	exit (0);
-	return (0);
-}
-

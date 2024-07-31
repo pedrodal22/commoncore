@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 01:11:24 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/20 13:39:34 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:15:46 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,33 +80,3 @@ void	map_images(t_data *dados)
 		y++;
 	}
 }
-
-// void initialize_data(t_data *dados)
-// {
-//     dados->mapa = NULL;
-//     dados->flood_mapa = NULL;
-//     dados->mlx_ptr = NULL;
-//     dados->win_ptr = NULL;
-//     dados->img_ptr_sand = NULL;
-//     dados->img_ptr_cato = NULL;
-//     dados->img_ptr_cowboy = NULL;
-//     dados->img_ptr_colet = NULL;
-//     dados->img_ptr_exit = NULL;
-//     dados->x_mapa = 0;
-//     dados->y_mapa = 0;
-//     dados->flood_mapa_x = 0;
-//     dados->flood_mapa_y = 0;
-//     dados->flood_player_count = 0;
-//     dados->flood_colet_count = 0;
-//     dados->flood_exit_count = 0;
-//     dados->mapa_colunas = 0;
-//     dados->mapa_linhas = 0;
-//     dados->pos_inicial_x = 0;
-//     dados->pos_inicial_y = 0;
-//     dados->pos_atual_x = 0;
-//     dados->pos_atual_y = 0;
-//     dados->exit_pos_x = 0;
-//     dados->exit_pos_y = 0;
-//     dados->colet_total = 0;
-//     dados->colet_count = 0;
-// }
