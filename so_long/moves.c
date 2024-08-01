@@ -6,23 +6,11 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:39:54 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/31 16:22:15 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:11:12 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	moves_all(int keysym)
-{
-	int	px;
-
-	px = 0;
-	if (keysym == 'w' || keysym == 'a')
-		px = -64;
-	else if (keysym == 's' || keysym == 'd')
-		px = 64;
-	return (px);
-}
 
 void	moves(t_data *dados, int keysym, int px)
 {
@@ -49,14 +37,8 @@ void	moves_ws(t_data *dados, int i)
 		game_over(dados);
 	if (dados->enemy_x == x && dados->enemy_y == y + i)
 		game_over(dados);
-	if (dados->mapa[((y + i) / 64)][(x / 64)] == 'E' &&
-	dados->colet_count == dados->colet_total)
-		destruir(dados);
-	if (dados->mapa[((y + i) / 64)][(x / 64)] == 'C')
-	{
-		dados->colet_count++;
-		dados->mapa[((y + i) / 64)][(x / 64)] = '0';
-	}
+	else
+		moves_ws2(dados, x, y, i);
 	dados->pos_atual_y += i / 64;
 	y += i;
 	mlx_put_image_to_window(dados->mlx_ptr, dados->win_ptr,
@@ -65,6 +47,18 @@ void	moves_ws(t_data *dados, int i)
 		dados->img_ptr_cowboy, x, y);
 	dados->count_moves++;
 	display_moves(dados);
+}
+
+void	moves_ws2(t_data *dados, int x, int y, int i)
+{
+	if (dados->mapa[((y + i) / 64)][(x / 64)] == 'E' &&
+	dados->colet_count == dados->colet_total)
+		destruir(dados);
+	if (dados->mapa[((y + i) / 64)][(x / 64)] == 'C')
+	{
+		dados->colet_count++;
+		dados->mapa[((y + i) / 64)][(x / 64)] = '0';
+	}
 }
 
 void	moves_ad(t_data *dados, int i)
@@ -84,14 +78,8 @@ void	moves_ad(t_data *dados, int i)
 		game_over(dados);
 	if (dados->enemy_x == x + i && dados->enemy_y == y)
 		game_over(dados);
-	if (dados->mapa[((y) / 64)][((x + i) / 64)] == 'E' && dados->colet_count
-		== dados->colet_total)
-		destruir(dados);
-	if (dados->mapa[((y) / 64)][((x + i) / 64)] == 'C')
-	{
-		dados->colet_count++;
-		dados->mapa[((y) / 64)][((x + i) / 64)] = '0';
-	}
+	else
+		moves_ad2(dados, x, y, i);
 	dados->pos_atual_x += i / 64;
 	x += i;
 	mlx_put_image_to_window(dados->mlx_ptr, dados->win_ptr,
@@ -102,27 +90,14 @@ void	moves_ad(t_data *dados, int i)
 	display_moves(dados);
 }
 
-void	display_moves(t_data *dados)
+void	moves_ad2(t_data *dados, int x, int y, int i)
 {
-	int a;
-	int b;
-	char *moves;
-
-	a = 0;
-	b = 0;
-
-	while(b < 20)
+	if (dados->mapa[((y) / 64)][((x + i) / 64)] == 'E' && dados->colet_count
+		== dados->colet_total)
+		destruir(dados);
+	if (dados->mapa[((y) / 64)][((x + i) / 64)] == 'C')
 	{
-		while(a < 80)
-		{
-			mlx_pixel_put(dados->mlx_ptr, dados->win_ptr, 5 + a, 10 + b, 0x000000);
-			a++;
-		}
-		a = 0;
-		b++;
+		dados->colet_count++;
+		dados->mapa[((y) / 64)][((x + i) / 64)] = '0';
 	}
-	moves = ft_itoa(dados->count_moves);
-	mlx_string_put(dados->mlx_ptr, dados->win_ptr, 10, 24, 0xFFFFFF, "Moves: ");
-    mlx_string_put(dados->mlx_ptr, dados->win_ptr, 55, 24, 0xFFFFFF, moves);
-	free(moves);
 }

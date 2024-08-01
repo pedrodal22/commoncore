@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 17:46:04 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/31 14:12:55 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/01 11:57:22 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 int	check_all(int argc, char **argv, t_data *dados)
 {
 	int	a;
+	int	fd;
 
+	fd = open(argv[1], O_RDONLY);
 	a = check_nome_ficheiro(argc, argv);
 	a += check_mapa_valido(argv, dados);
+	a += check_invalid_char(fd);
+	dados->count_moves = 0;
 	if (a != 0)
 		return (1);
 	return (0);
@@ -82,7 +86,37 @@ int	check_mapa_valido(char **argv, t_data *dados)
 		return (1);
 	elementos_mapa(dados, &player_count, &exit_count, fd);
 	close(fd);
-	if (player_count != 1 || exit_count != 1 || dados->colet_total < 1 || dados->num_enemies > 1)
+	if (player_count != 1 || exit_count != 1 || dados->colet_total < 1
+		|| dados->num_enemies > 1)
 		return (1);
+	return (0);
+}
+
+int	check_invalid_char(int fd)
+{
+	char	*str;
+	char	*string_original;
+	int		check;
+
+	check = 0;
+	str = get_next_line(fd);
+	while (str != NULL)
+	{
+		string_original = str;
+		while (*str != '\n' && *str != '\0')
+		{
+			printf("Checking character: '%c'\n", *str);
+			if (*str != '0' && *str != '1' && *str != 'E' && *str != 'P'
+				&& *str != 'T' && *str != 'C' && *str != 'X')
+			{
+				check = 1;
+			}
+			str++;
+		}
+		free(string_original);
+		if (check == 1)
+			return (1);
+		str = get_next_line(fd);
+	}
 	return (0);
 }

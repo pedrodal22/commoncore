@@ -82,12 +82,12 @@ void	moves_ws(t_data *dados, int i);
 void 	moves_ad(t_data *dados, int i);
 int 	destruir(t_data *dados);
 void 	allocate_flood_map(int rows, int columns, t_data *dados);
-void	mapa_linhas_colunas(t_data *dados, char *map_name);
+void	mapa_linhas_colunas(t_data *dados, int fd);
 
 void 	call_flood_fill(t_data *dados, int mapa_linhas, int mapa_colunas);
 void 	print_flood_fill(t_data *dados);
 int		flood_fill(t_data *dados);
-void 	find_player(t_data *dados, char *map_name);
+void 	find_player(t_data *dados, int fd);
 void	flood(t_data *dados, int y, int x);
 int 	check_walls(t_data *dados);
 
@@ -97,11 +97,12 @@ void create_images(t_data *dados, int largura, int altura);
 
 void	map_images(t_data *dados);
 void	put_image(t_data *dados, int x, int y, char caracter);
+void	put_image2(t_data *dados, int x, int y, char caracter);
 int		tecla(int keysym, t_data *dados);
 int 	destruir(t_data *dados);
 void	put_image_moves(t_data *dados, int x, int y, char caracter);
 int		moves_all(int keysym);
-void 	create_map(t_data *dados, char *map_name);
+void 	create_map(t_data *dados, int fd);
 void 	free_basic(t_data *dados);
 void 	initialize_data(t_data *dados);
 void 	free_all(t_data *dados);
@@ -129,6 +130,10 @@ char	*ft_strchr(const char *str, int c);
 char	*ft_itoa(int n);
 void	display_moves(t_data *dados);
 void initialize_data(t_data *dados);
-
+void	start_all(t_data *dados, char *map);
+int		check_invalid_char(int fd);
+void	moves_ad2(t_data *dados, int x, int y, int i);
+void	moves_ws2(t_data *dados, int x, int y, int i);
+void	display_colet(t_data *dados);
 
 #endif

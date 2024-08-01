@@ -6,15 +6,14 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:40:44 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/20 00:43:14 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/01 01:33:14 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	mapa_linhas_colunas(t_data *dados, char *map_name)
+void	mapa_linhas_colunas(t_data *dados, int fd)
 {
-	int		fd;
 	char	*line;
 	int		i;
 	int		linhas;
@@ -22,7 +21,6 @@ void	mapa_linhas_colunas(t_data *dados, char *map_name)
 
 	linhas = 0;
 	colunas = -1;
-	fd = open(map_name, O_RDONLY);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -97,34 +95,30 @@ void	allocate_flood_map(int rows, int columns, t_data *dados)
 	}
 }
 
-void create_map(t_data *dados, char *map_name)
+void	create_map(t_data *dados, int fd)
 {
-	int fd;
-	char *line;
-	int y;
-	int x;
+	char	*line;
+	int		y;
+	int		x;
 
-	fd = open(map_name, O_RDONLY);
 	line = get_next_line(fd);
- 	y = 0;
-    while (line != NULL && y < dados->mapa_linhas)
-    {
-        x = 0;
-        while (x < dados->mapa_colunas && line[x] != '\0' && line[x] != '\n')
-        {
-            dados->mapa[y][x] = line[x];
+	y = 0;
+	while (line != NULL && y < dados->mapa_linhas)
+	{
+		x = 0;
+		while (x < dados->mapa_colunas && line[x] != '\0' && line[x] != '\n')
+		{
+			dados->mapa[y][x] = line[x];
 			dados->flood_mapa[y][x] = line[x];
-            x++;
-        }
-        free(line);
+			x++;
+		}
+		free(line);
 		line = get_next_line(fd);
-        y++;
-    }
+		y++;
+	}
 	free(line);
 	close(fd);
 }
-
-
 
 int	check_walls(t_data *dados)
 {
@@ -135,7 +129,8 @@ int	check_walls(t_data *dados)
 	x = 0;
 	while (x < dados->mapa_colunas)
 	{
-		if (dados->mapa[0][x] != '1')
+		if (dados->mapa[0][x] != '1'
+			|| dados->mapa[dados->mapa_linhas - 1][x] != '1')
 			return (1);
 		x++;
 	}
@@ -145,13 +140,6 @@ int	check_walls(t_data *dados)
 		|| dados->mapa[y][dados->mapa_colunas - 1] != '1')
 			return (1);
 		y++;
-	}
-	x = 0;
-	while (x < dados->mapa_colunas)
-	{
-		if (dados->mapa[dados->mapa_linhas - 1][x] != '1')
-			return (1);
-		x++;
 	}
 	return (0);
 }

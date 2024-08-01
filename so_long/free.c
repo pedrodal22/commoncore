@@ -6,30 +6,30 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 11:24:17 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/20 14:23:54 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/01 01:19:13 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void free_all(t_data *dados)
+void	free_all(t_data *dados)
 {
 	free_basic(dados);
 	free_images(dados);
 }
 
-void free_basic(t_data *dados)
+void	free_basic(t_data *dados)
 {
 	if (dados->mlx_ptr)
 	{
-        free(dados->mlx_ptr);
-        dados->mlx_ptr = NULL;
-    }
-    free_map(dados);
+		free(dados->mlx_ptr);
+		dados->mlx_ptr = NULL;
+	}
+	free_map(dados);
 	free_map_flood(dados);
 }
 
-void free_images(t_data *dados)
+void	free_images(t_data *dados)
 {
 	if (dados->mlx_ptr)
 	{
@@ -44,45 +44,44 @@ void free_images(t_data *dados)
 		if (dados->img_ptr_sand)
 			mlx_destroy_image(dados->mlx_ptr, dados->img_ptr_sand);
 		if (dados->img_ptr_cop)
-			mlx_destroy_image(dados->mlx_ptr,dados->img_ptr_cop);
+			mlx_destroy_image(dados->mlx_ptr, dados->img_ptr_cop);
 		if (dados->img_ptr_din)
-			mlx_destroy_image(dados->mlx_ptr,dados->img_ptr_din);
+			mlx_destroy_image(dados->mlx_ptr, dados->img_ptr_din);
 		if (dados->win_ptr)
-			mlx_destroy_window(dados->mlx_ptr, dados->win_ptr);	
+			mlx_destroy_window(dados->mlx_ptr, dados->win_ptr);
 	}
 }
 
-void free_map(t_data *dados)
+void	free_map(t_data *dados)
 {
-    int i;
+	int	i;
 
 	i = 0;
-    if (dados->mapa)
-    {
-        while (i < dados->mapa_linhas)
-        {
-            free(dados->mapa[i]);
-            i++;
-        }
-        free(dados->mapa);
+	if (dados->mapa)
+	{
+		while (i < dados->mapa_linhas)
+		{
+			free(dados->mapa[i]);
+			i++;
+		}
+		free(dados->mapa);
 		dados->mapa = NULL;
-    }
+	}
 }
 
-void free_map_flood(t_data *dados)
+void	free_map_flood(t_data *dados)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	 i = 0;
-    if (dados->flood_mapa)
-    {
-        while (i < dados->mapa_linhas)
-        {
-            free(dados->flood_mapa[i]);
-            i++;
-        }
-        free(dados->flood_mapa);
+	if (dados->flood_mapa)
+	{
+		while (i < dados->mapa_linhas)
+		{
+			free(dados->flood_mapa[i]);
+			i++;
+		}
+		free(dados->flood_mapa);
 		dados->flood_mapa = NULL;
-    }
+	}
 }

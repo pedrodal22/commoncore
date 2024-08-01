@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 01:11:24 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/31 14:15:46 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/01 01:41:19 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,13 @@ void	put_image(t_data *dados, int x, int y, char caracter)
 		dados->exit_pos_x = x * 64;
 		dados->exit_pos_y = y * 64;
 	}
-	else if (caracter == 'C')
+	else
+		put_image2(dados, x, y, caracter);
+}
+
+void	put_image2(t_data *dados, int x, int y, char caracter)
+{
+	if (caracter == 'C')
 		mlx_put_image_to_window(dados->mlx_ptr, dados->win_ptr,
 			dados->img_ptr_colet, x * 64, y * 64);
 	else if (caracter == 'T')
