@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:40:44 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/01 01:33:14 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:38:26 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,14 +131,14 @@ int	check_walls(t_data *dados)
 	{
 		if (dados->mapa[0][x] != '1'
 			|| dados->mapa[dados->mapa_linhas - 1][x] != '1')
-			return (1);
+			return (print_errors(0), 1);
 		x++;
 	}
 	while (y < dados->mapa_linhas)
 	{
 		if (dados->mapa[y][0] != '1'
 		|| dados->mapa[y][dados->mapa_colunas - 1] != '1')
-			return (1);
+			return (print_errors(0), 1);
 		y++;
 	}
 	return (0);

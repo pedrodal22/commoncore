@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 01:15:51 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/01 12:34:55 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:56:34 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	destruir(t_data *dados)
 {
 	mlx_destroy_window(dados->mlx_ptr, dados->win_ptr);
 	mlx_destroy_display(dados->mlx_ptr);
-	free(dados->mlx_ptr);
+	free_all(dados);
 	exit (0);
 	return (0);
 }

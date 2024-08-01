@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 17:46:04 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/01 11:57:22 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:50:23 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,17 @@ int	check_nome_ficheiro(int argc, char **argv)
 
 	a = 0;
 	if (argc != 2)
+	{
+		ft_printf("Error\nEstão a ser passados argumentos a mais/menos\n");
 		return (1);
+	}
 	while (argv[1][a] != '.' && argv[1][a] != '\0')
 		a++;
 	if (a == 0)
 		return (1);
 	if (argv[1][a + 1] == 'b' && argv[1][a + 2] == 'e' && argv[1][a + 3] == 'r')
 		return (0);
+	ft_printf("Error\nO mapa, enquanto argumento, está errado\n");
 	return (1);
 }
 
@@ -86,10 +90,11 @@ int	check_mapa_valido(char **argv, t_data *dados)
 		return (1);
 	elementos_mapa(dados, &player_count, &exit_count, fd);
 	close(fd);
-	if (player_count != 1 || exit_count != 1 || dados->colet_total < 1
-		|| dados->num_enemies > 1)
-		return (1);
-	return (0);
+	if (player_count == 1 || exit_count == 1 || dados->colet_total >= 1
+		|| dados->num_enemies <= 1)
+		return (0);
+	ft_printf("Error\nO mapa não tem os requisitos mínimos\n");
+	return (1);
 }
 
 int	check_invalid_char(int fd)
@@ -105,17 +110,14 @@ int	check_invalid_char(int fd)
 		string_original = str;
 		while (*str != '\n' && *str != '\0')
 		{
-			printf("Checking character: '%c'\n", *str);
 			if (*str != '0' && *str != '1' && *str != 'E' && *str != 'P'
 				&& *str != 'T' && *str != 'C' && *str != 'X')
-			{
 				check = 1;
-			}
 			str++;
 		}
 		free(string_original);
 		if (check == 1)
-			return (1);
+			return (print_errors(1), 1);
 		str = get_next_line(fd);
 	}
 	return (0);

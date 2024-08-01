@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:20:18 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/01 11:35:06 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:51:16 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ int	flood_fill(t_data *dados)
 		== dados->colet_total && dados->flood_exit_count == 1)
 		return (0);
 	else
-		return (1);
+		return (print_errors(2), 1);
 }

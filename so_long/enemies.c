@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:30:45 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/01 01:08:59 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/01 19:02:03 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	move_inimigos_ad(t_data *dados)
 			move *= -1;
 		if (((x / 64) + move == dados->pos_atual_x)
 			&& ((dados->enemy_y / 64) == dados->pos_atual_y))
-			game_over(dados);
+			game_over(dados, 2);
 		mlx_put_image_to_window(dados->mlx_ptr, dados->win_ptr,
 			dados->img_ptr_sand, dados->enemy_x, dados->enemy_y);
 		dados->enemy_x = (dados->enemy_x + (64 * move));

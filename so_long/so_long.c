@@ -6,15 +6,22 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:59:07 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/01 12:38:37 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/01 19:23:21 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	game_over(t_data *dados)
+void	game_over(t_data *dados, int type)
 {
-	ft_printf("Game Over!");
+	if (type == 0)
+		printf("Encontras-te o esconderijo!\nGanhaste!\n");
+	else if (type == 1)
+		ft_printf("Encontraste-te o Xerife!\n");
+	else if (type == 2)
+		ft_printf("O Xerife encontrou-te!\n");
+	else if (type == 3)
+		ft_printf("Pisaste numa dinamite!\n");
 	destruir(dados);
 }
 
@@ -34,17 +41,30 @@ void	start_all(t_data *dados, char *map)
 	inimigos_init(dados);
 }
 
+int	check_start(int argc, char **argv, t_data *dados)
+{
+	dados->mlx_ptr = mlx_init();
+	if (dados->mlx_ptr == NULL || check_all(argc, argv, dados) == 1)
+		return (1);
+	return (0);
+}
+
+void	print_errors(int error)
+{
+	if (error == 0)
+		ft_printf("Error\nAs paredes do mapa são inválidas\n");
+	if (error == 1)
+		ft_printf("Error\nO mapa contém caractéres inválidos\n");
+	if (error == 2)
+		ft_printf("Error\nNão há um caminho válido até à saída/aos itens");
+}
+
 int	main(int argc, char *argv[])
 {
 	t_data	dados;
 
-	dados.mlx_ptr = mlx_init();
-	if (dados.mlx_ptr == NULL || check_all(argc, argv, &dados) == 1)
-	{
-		free_all(&dados);
-		ft_printf("Error\n");
-		return (1);
-	}
+	if (check_start(argc, argv, &dados) != 0)
+		return (free_all(&dados), 1);
 	start_all(&dados, argv[1]);
 	if (check_walls(&dados) == 0 && flood_fill(&dados) == 0)
 	{
