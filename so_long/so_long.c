@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:59:07 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/01 19:23:21 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/02 23:40:58 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,14 @@ void	start_all(t_data *dados, char *map)
 
 	fd = open(map, O_RDONLY);
 	mapa_linhas_colunas(dados, fd);
+	close(fd);
 	allocate_struct_map(dados->mapa_linhas, dados->mapa_colunas, dados);
 	fd = open(map, O_RDONLY);
 	create_map(dados, fd);
+	close(fd);
 	fd = open(map, O_RDONLY);
 	find_player(dados, fd);
+	close(fd);
 	dados->pos_atual_x = dados->pos_inicial_x;
 	dados->pos_atual_y = dados->pos_inicial_y;
 	inimigos_init(dados);
@@ -69,7 +72,7 @@ int	main(int argc, char *argv[])
 	if (check_walls(&dados) == 0 && flood_fill(&dados) == 0)
 	{
 		dados.win_ptr = mlx_new_window(dados.mlx_ptr, (dados.mapa_colunas * 64),
-				(dados.mapa_linhas * 64), "hi :)");
+				(dados.mapa_linhas * 64), "so_long");
 		if (dados.win_ptr == NULL)
 			return (free_all(&dados), 1);
 		create_images(&dados, 64, 64);
@@ -78,9 +81,8 @@ int	main(int argc, char *argv[])
 		if (dados.num_enemies == 1)
 			mlx_loop_hook(dados.mlx_ptr, move_inimigos, &dados);
 		mlx_hook(dados.win_ptr, DestroyNotify, StructureNotifyMask,
-			&destruir, &dados);
+			destruir, &dados);
 		mlx_loop(dados.mlx_ptr);
 	}
-	free_all(&dados);
 	return (0);
 }

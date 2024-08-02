@@ -6,24 +6,17 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 11:24:17 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/02 10:35:18 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/02 23:42:47 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_all(t_data *dados)
+void free_all(t_data *dados)
 {
-	free_basic(dados);
-	free_images(dados);
-}
-
-void	free_basic(t_data *dados)
-{
-	if (dados->mlx_ptr)
+    if (dados->mlx_ptr)
 	{
-		free(dados->mlx_ptr);
-		dados->mlx_ptr = NULL;
+        free_images(dados);
 	}
 	free_map(dados);
 	free_map_flood(dados);
@@ -31,8 +24,6 @@ void	free_basic(t_data *dados)
 
 void	free_images(t_data *dados)
 {
-	if (dados->mlx_ptr)
-	{
 		if (dados->img_ptr_cato)
 			mlx_destroy_image(dados->mlx_ptr, dados->img_ptr_cato);
 		if (dados->img_ptr_colet)
@@ -47,17 +38,13 @@ void	free_images(t_data *dados)
 			mlx_destroy_image(dados->mlx_ptr, dados->img_ptr_cop);
 		if (dados->img_ptr_din)
 			mlx_destroy_image(dados->mlx_ptr, dados->img_ptr_din);
-		if (dados->win_ptr)
-			mlx_destroy_window(dados->mlx_ptr, dados->win_ptr);
-	}
-	free(dados->img_ptr_cato);
-	free(dados->img_ptr_colet);
-	free(dados->img_ptr_cowboy);
-	free(dados->img_ptr_exit);
-	free(dados->img_ptr_sand);
-	free(dados->img_ptr_cop);
-	free(dados->img_ptr_din);
-	free(dados->win_ptr);
+		free(dados->img_ptr_cato);
+		free(dados->img_ptr_colet);
+		free(dados->img_ptr_cowboy);
+		free(dados->img_ptr_exit);
+		free(dados->img_ptr_sand);
+		free(dados->img_ptr_cop);
+		free(dados->img_ptr_din);
 }
 
 void	free_map(t_data *dados)

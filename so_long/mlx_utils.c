@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 01:15:51 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/01 18:56:34 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/02 23:39:55 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ int	moves_all(int keysym)
 
 int	destruir(t_data *dados)
 {
-	mlx_destroy_window(dados->mlx_ptr, dados->win_ptr);
-	mlx_destroy_display(dados->mlx_ptr);
 	free_all(dados);
-	exit (0);
+	mlx_destroy_display(dados->mlx_ptr);
+	mlx_destroy_window(dados->mlx_ptr, dados->win_ptr);
+	free(dados->mlx_ptr);
+	free(dados->win_ptr);
 	return (0);
 }
 
@@ -87,4 +88,6 @@ void	display_colet(t_data *dados)
 		0xFFFFFF, " / ");
 	mlx_string_put(dados->mlx_ptr, dados->win_ptr, 75, 40,
 		0xFFFFFF, colet_total);
+	free(colet_count);
+	free(colet_total);
 }
