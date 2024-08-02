@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 11:24:17 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/01 01:19:13 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:35:18 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ void	free_images(t_data *dados)
 		if (dados->win_ptr)
 			mlx_destroy_window(dados->mlx_ptr, dados->win_ptr);
 	}
+	free(dados->img_ptr_cato);
+	free(dados->img_ptr_colet);
+	free(dados->img_ptr_cowboy);
+	free(dados->img_ptr_exit);
+	free(dados->img_ptr_sand);
+	free(dados->img_ptr_cop);
+	free(dados->img_ptr_din);
+	free(dados->win_ptr);
 }
 
 void	free_map(t_data *dados)
