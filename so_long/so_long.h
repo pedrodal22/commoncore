@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:27:23 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/02 22:49:22 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:14:01 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int		destruir(t_data *dados);
 int		moves_all(int keysym);
 void	create_map(t_data *dados, int fd);
 void	free_basic(t_data *dados);
-void	free_all(t_data *dados);
+void 	free_all(t_data *dados, int flag);
 void	free_map_flood(t_data *dados);
 void	free_images(t_data *dados);
 void	game_over(t_data *dados, int type);

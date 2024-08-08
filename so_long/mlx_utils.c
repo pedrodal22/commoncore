@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 01:15:51 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/02 23:39:55 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:13:00 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	moves_all(int keysym)
 
 int	destruir(t_data *dados)
 {
-	free_all(dados);
+	free_all(dados, 0);
 	mlx_destroy_display(dados->mlx_ptr);
 	mlx_destroy_window(dados->mlx_ptr, dados->win_ptr);
 	free(dados->mlx_ptr);

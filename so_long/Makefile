@@ -1,5 +1,3 @@
-UNAME := $(shell uname)
-
 MLX_DIR = ./mlx_linux/minilibx-linux
 SRC_DIR = .
 SUB_DIR = Get_Next_Line
@@ -11,18 +9,11 @@ SRC = so_long.c file_check.c flood_fill.c mem_alloc.c moves.c free.c mlx_images.
 OBJ = $(SRC:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -O3 -g
+CFLAGS = -Wall -Wextra -Werror -g
 
-ifeq ($(UNAME), Linux)
-    INCLUDES = -I/usr/include -I$(MLX_DIR) -I$(SUB_DIR) -I$(SUB_DIR2)
-    MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -lXext -lX11
-    MLX_LIB = $(MLX_DIR)/libmlx.a
-else
-    INCLUDES = -I/opt/X11/include -I$(MLX_DIR) -I$(SUB_DIR) -I$(SUB_DIR2)
-    MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
-    MLX_LIB = $(MLX_DIR)/libmlx.a
-endif
-
+INCLUDES = -I/usr/include -I$(MLX_DIR) -I$(SUB_DIR) -I$(SUB_DIR2)
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -lXext -lX11
+MLX_LIB = $(MLX_DIR)/libmlx.a
 
 all: $(MLX_LIB) $(NAME)
 
