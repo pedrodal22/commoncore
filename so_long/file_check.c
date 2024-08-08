@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 17:46:04 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/01 18:50:23 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:38:24 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	check_all(int argc, char **argv, t_data *dados)
 	int	fd;
 
 	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		return (1);
 	a = check_nome_ficheiro(argc, argv);
 	a += check_mapa_valido(argv, dados);
 	a += check_invalid_char(fd);

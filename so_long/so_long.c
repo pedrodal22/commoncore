@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:59:07 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/08 16:25:07 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:46:03 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		exit (1);
+	innit(&dados);
 	if (check_start(argc, argv, &dados) != 0)
 		return (free_all(&dados, 1), 1);
-	innit(&dados);
 	start_all(&dados, argv[1]);
 	if (check_walls(&dados) == 0 && flood_fill(&dados) == 0)
 	{
@@ -119,9 +119,9 @@ int	main(int argc, char *argv[])
 		mlx_hook(dados.win_ptr, KeyRelease, KeyReleaseMask, &tecla, &dados);
 		if (dados.num_enemies == 1)
 			mlx_loop_hook(dados.mlx_ptr, move_inimigos, &dados);
+		mlx_loop(dados.mlx_ptr);
 		mlx_hook(dados.win_ptr, DestroyNotify, StructureNotifyMask,
 			destruir, &dados);
-		mlx_loop(dados.mlx_ptr);
 	}
 	return (0);
 }
