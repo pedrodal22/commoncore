@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:39:54 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/02 23:35:17 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:09:07 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,15 @@ void	moves_ws(t_data *dados, int i)
 		dados->colet_total))
 		return ;
 	if (dados->mapa[((y + i) / 64)][(x / 64)] == 'T')
+	{
 		game_over(dados, 3);
+		exit(1);
+	}
 	if (dados->enemy_x == x && dados->enemy_y == y + i)
-		game_over(dados, 1);
+	{
+		game_over(dados, 3);
+		exit(1);
+	}
 	else
 		moves_ws2(dados, x, y, i);
 	dados->pos_atual_y += i / 64;
@@ -53,7 +59,10 @@ void	moves_ws2(t_data *dados, int x, int y, int i)
 {
 	if (dados->mapa[((y + i) / 64)][(x / 64)] == 'E' &&
 	dados->colet_count == dados->colet_total)
+	{
 		game_over(dados, 0);
+		exit (1);
+	}
 	if (dados->mapa[((y + i) / 64)][(x / 64)] == 'C')
 	{
 		dados->colet_count++;
@@ -75,9 +84,15 @@ void	moves_ad(t_data *dados, int i)
 		&& dados->colet_count != dados->colet_total))
 		return ;
 	if (dados->mapa[((y) / 64)][((x + i) / 64)] == 'T')
+	{
 		game_over(dados, 3);
+		exit(1);
+	}
 	if (dados->enemy_x == x + i && dados->enemy_y == y)
+	{
 		game_over(dados, 1);
+		exit(1);
+	}
 	else
 		moves_ad2(dados, x, y, i);
 	dados->pos_atual_x += i / 64;
@@ -94,7 +109,10 @@ void	moves_ad2(t_data *dados, int x, int y, int i)
 {
 	if (dados->mapa[((y) / 64)][((x + i) / 64)] == 'E' && dados->colet_count
 		== dados->colet_total)
-		game_over(dados, 0);
+		{
+			game_over(dados, 0);
+			exit(1);
+		}
 	if (dados->mapa[((y) / 64)][((x + i) / 64)] == 'C')
 	{
 		dados->colet_count++;

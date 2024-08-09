@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 01:15:51 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/08 16:13:00 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/09 18:29:44 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	tecla(int keysym, t_data *dados)
 	int	px;
 
 	if (keysym == 65307)
-		destruir(dados);
+		destruir(dados, 0);
 	if (keysym == 'w' || keysym == 'd' || keysym == 'a' || keysym == 's')
 	{
 		px = moves_all(keysym);
@@ -38,13 +38,24 @@ int	moves_all(int keysym)
 	return (px);
 }
 
-int	destruir(t_data *dados)
+int	destruir(t_data *dados, int flag)
 {
-	free_all(dados, 0);
-	mlx_destroy_display(dados->mlx_ptr);
-	mlx_destroy_window(dados->mlx_ptr, dados->win_ptr);
-	free(dados->mlx_ptr);
-	free(dados->win_ptr);
+	if (flag == 1)
+	{
+		free_all(dados, flag);
+		if (dados->mlx_ptr)
+			free(dados->mlx_ptr);
+	}
+	else
+	{
+		flag = 0;
+		free_all(dados, flag);
+		mlx_destroy_window(dados->mlx_ptr, dados->win_ptr);
+		mlx_destroy_display(dados->mlx_ptr);
+		free(dados->mlx_ptr);
+		exit(1);
+		// free(dados->win_ptr);
+	}
 	return (0);
 }
 

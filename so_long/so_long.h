@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:27:23 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/08 16:14:01 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:33:52 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #  define BUFFER_SIZE 20
 # endif
 
-# include "mlx_linux/minilibx-linux/mlx.h"
+# include "mlx-linux/minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <stdio.h>
@@ -83,7 +83,6 @@ void	allocate_struct_map(int rows, int columns, t_data *dados);
 void	moves(t_data *dados, int keysym, int px);
 void	moves_ws(t_data *dados, int i);
 void	moves_ad(t_data *dados, int i);
-int		destruir(t_data *dados);
 void	allocate_flood_map(int rows, int columns, t_data *dados);
 void	mapa_linhas_colunas(t_data *dados, int fd);
 int		flood_fill(t_data *dados);
@@ -97,10 +96,9 @@ void	map_images(t_data *dados);
 void	put_image(t_data *dados, int x, int y, char caracter);
 void	put_image2(t_data *dados, int x, int y, char caracter);
 int		tecla(int keysym, t_data *dados);
-int		destruir(t_data *dados);
+int		destruir(t_data *dados, int flag);
 int		moves_all(int keysym);
 void	create_map(t_data *dados, int fd);
-void	free_basic(t_data *dados);
 void 	free_all(t_data *dados, int flag);
 void	free_map_flood(t_data *dados);
 void	free_images(t_data *dados);

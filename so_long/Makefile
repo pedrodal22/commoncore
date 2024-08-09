@@ -1,4 +1,4 @@
-MLX_DIR = ./mlx_linux/minilibx-linux
+MLX_DIR = ./mlx-linux/minilibx-linux
 SRC_DIR = .
 SUB_DIR = Get_Next_Line
 SUB_DIR2 = printf
@@ -34,5 +34,9 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C $(MLX_DIR) clean
+
+mem:
+	make re && valgrind --leak-check=full --show-leak-kinds=all --log-file=val.log ./so_long map1.ver
+
 
 re: fclean all

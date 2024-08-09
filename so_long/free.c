@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 11:24:17 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/08 16:17:20 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:54:43 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,11 @@ void free_all(t_data *dados, int flag)
 {
 	if (flag == 1)
 	{
-		if (dados->mlx_ptr)
-		{
-        	free(dados->mlx_ptr);
-		}
+        free(dados->mlx_ptr);
 	}
 	if (flag == 0)
 	{
-		if (dados->mlx_ptr)
-		{
-       		free_images(dados);
-		}
+       	free_images(dados);
 		free_map(dados);
 		free_map_flood(dados);
 	}
@@ -48,13 +42,13 @@ void	free_images(t_data *dados)
 			mlx_destroy_image(dados->mlx_ptr, dados->img_ptr_cop);
 		if (dados->img_ptr_din)
 			mlx_destroy_image(dados->mlx_ptr, dados->img_ptr_din);
-		free(dados->img_ptr_cato);
-		free(dados->img_ptr_colet);
-		free(dados->img_ptr_cowboy);
-		free(dados->img_ptr_exit);
-		free(dados->img_ptr_sand);
-		free(dados->img_ptr_cop);
-		free(dados->img_ptr_din);
+		// free(dados->img_ptr_cato);
+		// free(dados->img_ptr_colet);
+		// free(dados->img_ptr_cowboy);
+		// free(dados->img_ptr_exit);
+		// free(dados->img_ptr_sand);
+		// free(dados->img_ptr_cop);
+		// free(dados->img_ptr_din);
 }
 
 void	free_map(t_data *dados)

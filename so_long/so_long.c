@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:59:07 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/08 16:46:03 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/09 18:18:50 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	game_over(t_data *dados, int type)
 		ft_printf("O Xerife encontrou-te!\n");
 	else if (type == 3)
 		ft_printf("Pisaste numa dinamite!\n");
-	destruir(dados);
+	destruir(dados, 0);
 }
 
 void	start_all(t_data *dados, char *map)
@@ -106,22 +106,21 @@ int	main(int argc, char *argv[])
 		exit (1);
 	innit(&dados);
 	if (check_start(argc, argv, &dados) != 0)
-		return (free_all(&dados, 1), 1);
+		return (destruir(&dados, 1), 1);
 	start_all(&dados, argv[1]);
 	if (check_walls(&dados) == 0 && flood_fill(&dados) == 0)
 	{
 		dados.win_ptr = mlx_new_window(dados.mlx_ptr, (dados.mapa_colunas * 64),
 				(dados.mapa_linhas * 64), "so_long");
 		if (dados.win_ptr == NULL)
-			return (free_all(&dados, 0), 1);
+			return (destruir(&dados, 0), 1);
 		create_images(&dados, 64, 64);
 		map_images(&dados);
 		mlx_hook(dados.win_ptr, KeyRelease, KeyReleaseMask, &tecla, &dados);
 		if (dados.num_enemies == 1)
 			mlx_loop_hook(dados.mlx_ptr, move_inimigos, &dados);
+		mlx_hook(dados.win_ptr, DestroyNotify, StructureNotifyMask, destruir, &dados);
 		mlx_loop(dados.mlx_ptr);
-		mlx_hook(dados.win_ptr, DestroyNotify, StructureNotifyMask,
-			destruir, &dados);
 	}
 	return (0);
 }
