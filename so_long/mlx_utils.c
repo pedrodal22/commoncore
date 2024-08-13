@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 01:15:51 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/09 18:29:44 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:00:01 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int	destruir(t_data *dados, int flag)
 	if (flag == 1)
 	{
 		free_all(dados, flag);
-		if (dados->mlx_ptr)
-			free(dados->mlx_ptr);
 	}
 	else
 	{

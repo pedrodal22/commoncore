@@ -35,8 +35,4 @@ fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C $(MLX_DIR) clean
 
-mem:
-	make re && valgrind --leak-check=full --show-leak-kinds=all --log-file=val.log ./so_long map1.ver
-
-
 re: fclean all
