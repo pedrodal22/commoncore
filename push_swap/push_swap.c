@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 22:12:40 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/02 14:36:12 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:39:06 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,45 +75,23 @@ int	main(int argc, char *argv[])
 	t_node	*stack_a;
 	t_node	*stack_b;
 
+	if (argc < 2)
+		return (1);
+	stack_a = NULL;
+	stack_b = NULL;
 	array = malloc((argc - 1) * sizeof(int));
 	array_index = malloc((argc - 1) * sizeof(int));
 	copy = malloc((argc - 1) * sizeof(int));
-	stack_a = NULL;
-	stack_b = NULL;
 	if (check(argc, argv) == 1)
-		write(STDERR_FILENO, "Error\n", 6);
+		write(2, "Error\n", 6);
 	else
 	{
 		do_all(argc, argv, copy, array);
 		put_index(argc, array, copy, array_index);
 		in_st(argc, &stack_a, array, array_index);
-		comparasion(&stack_a, &stack_b);
+		if (sec_check(&stack_a) == 0 || comparison(&stack_a, &stack_b) == 1)
+			free_all(array, array_index, copy, stack_a);
 	}
-	free_stacks(stack_a, stack_b);
-	free_arrays(array, array_index, copy);
+	free_all(array, array_index, copy, stack_a);
 	return (0);
 }
-
-// void	print_stack(t_node *top)
-// {
-// 	int i;
-// 	t_node *current;	
-// 	i = 1;
-// 	current = top;
-// 	while (current != NULL) {
-// 	    printf("Original %i: %d, Indice: %d\n", i, 
-//current->original_value, current->indice_objtv);
-//         current = current->next;
-//         i++;
-//     }
-//     printf("-----\n\n");
-// }
-// printf("stack_a\n");
-// print_stack(stack_a);
-// printf("stack_b\n");
-// print_stack(stack_b);
-// comparasion(&stack_a, &stack_b);
-// printf("stack_a\n");
-// print_stack(stack_a);
-// printf("stack_b\n");
-// print_stack(stack_b);

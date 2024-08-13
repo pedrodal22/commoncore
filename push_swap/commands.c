@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 21:04:09 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/02 09:59:31 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/10 18:21:22 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,15 @@ int	numero_nodes(t_node **stackA)
 int	check_order(t_node **stackA)
 {
 	t_node	*current;
-	t_node	*current_next;
 
-	if (*stackA == NULL)
+	if (stackA == NULL || *stackA == NULL)
 		return (0);
 	current = *stackA;
-	current_next = current->next;
-	while (current_next != NULL)
+	while (current->next != NULL)
 	{
-		if (current->indice_objtv > current_next->indice_objtv)
+		if (current->indice_objtv > current->next->indice_objtv)
 			return (1);
 		current = current->next;
-		current_next = current->next;
 	}
 	return (0);
 }
@@ -61,7 +58,7 @@ void	rotate_two(t_node **stackA)
 	ft_printf("ra\n");
 }
 
-void	comparasion(t_node **stackA, t_node **stackB)
+int	comparison(t_node **stackA, t_node **stackB)
 {
 	int				mask;
 	int				i_nodes;
@@ -73,7 +70,7 @@ void	comparasion(t_node **stackA, t_node **stackB)
 	{
 		i = 0;
 		if (check_order(stackA) == 0)
-			break ;
+			return (1);
 		while (i < i_nodes)
 		{
 			if (((*stackA)->indice_objtv & mask) == 0)
@@ -86,4 +83,5 @@ void	comparasion(t_node **stackA, t_node **stackB)
 			push_two(stackB, stackA, 2);
 		mask <<= 1;
 	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 22:10:17 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/02 12:39:08 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:07:54 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,6 @@ void	bubble_sort(int *copy, int argc)
 		a = 0;
 		i++;
 	}
-}
-
-void	free_stacks(t_node *stackA, t_node *stackB)
-{
-	t_node	*temp;
-
-	while (stackA)
-	{
-		temp = stackA;
-		stackA = stackA->next;
-		free(temp);
-	}
-	while (stackB)
-	{
-		temp = stackA;
-		stackA = stackA->next;
-		free(temp);
-	}
-}
-
-void	free_arrays(int *array, int *array_index, int *copy)
-{
-	free(array);
-	free(array_index);
-	free(copy);
 }
 
 int	check_double(int argc, char **argv)
@@ -94,15 +69,16 @@ int	check(int argc, char **argv)
 	int	i;
 	int	a;
 
-	i = 0;
 	a = 1;
-	if (argc <= 1)
-		return (0);
 	while (a < argc)
 	{
 		i = 0;
-		if (argv[a][0] == '-')
-			i++;
+		if (argv[a][0] == '-' || argv[a][0] == '+')
+		{
+			if (argv[a][1] < '0' && argv[a][1] > '9')
+				return (1);
+			i++;	
+		}
 		while (argv[a][i] != '\0')
 		{
 			if (argv[a][i] < '0' || argv[a][i] > '9')
@@ -114,5 +90,21 @@ int	check(int argc, char **argv)
 	}
 	if (check_double(argc, argv) == 1)
 		return (1);
+	return (0);
+}
+
+int	sec_check(t_node **stackA)
+{
+	t_node	*current;
+
+	if (stackA == NULL || *stackA == NULL)
+		return (0);
+	current = *stackA;
+	while (current->next != NULL)
+	{
+		if (current->indice_objtv > current->next->indice_objtv)
+			return (1);
+		current = current->next;
+	}
 	return (0);
 }

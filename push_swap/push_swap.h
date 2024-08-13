@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 01:48:19 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/10 01:32:55 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/10 18:31:09 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int				numero_nodes(t_node **stackA);
 int				check_order(t_node **stackA);
 void			push_two(t_node **fonte, t_node **destino, int i);
 void			rotate_two(t_node **stackA);
-void			comparasion(t_node **stackA, t_node **stackB);
+int				comparison(t_node **stackA, t_node **stackB);
 void			bubble_sort(int *copy, int argc);
-void			free_stacks(t_node *stackA, t_node *stackB);
+void			free_stacks(t_node *stackA);
 void			free_arrays(int *array, int *array_index, int *copy);
 int				check_double(int argc, char **argv);
 int				check(int argc, char **argv);
@@ -55,5 +55,8 @@ int				ft_putstr(const char *str);
 int				ft_conv(char *str, int i, va_list args);
 char			*ft_strchr(const char *str, int c);
 int				ft_printf(const char *str, ...);
+int				sec_check(t_node **stack_a);
+void			free_all(int *array, int *array_index, int *copy,
+					t_node *stack_a);
 
 #endif 

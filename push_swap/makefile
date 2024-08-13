@@ -1,6 +1,6 @@
 NAME = push_swap
-FLAGS = -Wall -Wextra -Werror
-SRC =	commands.c printf.c stacks.c push_swap.c utils.c utils_two.c
+FLAGS = -Wall -Wextra -Werror -g
+SRC =	commands.c printf.c stacks.c push_swap.c frees.c utils.c utils_two.c
 
 OBJECTS_SRC = $(SRC:.c=.o)
 

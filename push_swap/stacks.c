@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 21:05:50 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/02 09:59:20 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/10 17:38:55 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	stck_innit(t_node **top, int original_value, int indice_objtv)
 	t_node	*new_node;
 	t_node	*current;
 
-	new_node = malloc(sizeof(new_node));
+	new_node = malloc(sizeof(t_node));
 	if (new_node == NULL)
 		return ;
 	new_node->original_value = original_value;
