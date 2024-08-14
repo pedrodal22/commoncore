@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 21:04:09 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/10 18:21:22 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:35:29 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,6 @@ int	check_order(t_node **stackA)
 		current = current->next;
 	}
 	return (0);
-}
-
-void	push_two(t_node **fonte, t_node **destino, int i)
-{
-	push(fonte, destino);
-	if (i == 1)
-		ft_printf("pb\n");
-	else
-		ft_printf("pa\n");
-}
-
-void	rotate_two(t_node **stackA)
-{
-	rotate(stackA);
-	ft_printf("ra\n");
 }
 
 int	comparison(t_node **stackA, t_node **stackB)

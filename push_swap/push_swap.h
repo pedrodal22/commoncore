@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 01:48:19 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/10 18:31:09 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:59:34 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,11 @@ int				ft_printf(const char *str, ...);
 int				sec_check(t_node **stack_a);
 void			free_all(int *array, int *array_index, int *copy,
 					t_node *stack_a);
+void		    reverse_rotate_two(t_node **stackA);
+void			swap_two(t_node **stackA);
+void			rotate_two(t_node **stackA);
+void			sort_3(t_node **stackA);
+void 			rotate_three(t_node **stackB);
+void		sort_5(t_node **stackA, t_node **stackB);
 
 #endif 
