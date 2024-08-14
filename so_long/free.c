@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 11:24:17 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/09 16:54:43 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:44:45 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void free_all(t_data *dados, int flag)
 {
 	if (flag == 1)
 	{
+		mlx_destroy_display(dados->mlx_ptr);
         free(dados->mlx_ptr);
 	}
 	if (flag == 0)

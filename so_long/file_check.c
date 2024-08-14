@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 17:46:04 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/09 19:05:39 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/14 17:04:53 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	check_all(int argc, char **argv, t_data *dados)
 	int	a;
 	int	fd;
 
+	a = check_nome_ficheiro(argc, argv);
+	a += check_mapa_valido(argv, dados);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (1);
-	a = check_nome_ficheiro(argc, argv);
-	a += check_mapa_valido(argv, dados);
 	a += check_invalid_char(fd);
 	close(fd);
 	dados->count_moves = 0;
@@ -35,16 +35,13 @@ int	check_nome_ficheiro(int argc, char **argv)
 	int	a;
 
 	a = 0;
-	if (argc != 2)
-	{
-		ft_printf("Error\nEstão a ser passados argumentos a mais/menos\n");
-		return (1);
-	}
+	(void) argc;
 	while (argv[1][a] != '.' && argv[1][a] != '\0')
 		a++;
 	if (a == 0)
 		return (1);
-	if (argv[1][a + 1] == 'b' && argv[1][a + 2] == 'e' && argv[1][a + 3] == 'r')
+	if (argv[1][a] == '.' && argv[1][a + 1] == 'b' && argv[1][a + 2] == 'e'
+		&& argv[1][a + 3] == 'r')
 		return (0);
 	ft_printf("Error\nO mapa, enquanto argumento, está errado\n");
 	return (1);
@@ -93,8 +90,8 @@ int	check_mapa_valido(char **argv, t_data *dados)
 		return (1);
 	elementos_mapa(dados, &player_count, &exit_count, fd);
 	close(fd);
-	if (player_count == 1 || exit_count == 1 || dados->colet_total >= 1
-		|| dados->num_enemies <= 1)
+	if (player_count == 1 && exit_count == 1 && dados->colet_total >= 1
+		& dados->num_enemies <= 1)
 		return (0);
 	ft_printf("Error\nO mapa não tem os requisitos mínimos\n");
 	return (1);

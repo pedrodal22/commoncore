@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:59:07 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/09 19:06:43 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/14 15:54:44 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	main(int argc, char *argv[])
 	t_data	dados;
 
 	if (argc != 2)
-		exit (1);
+		return (write(1, "Not enough arguments\n", 22), 1);
 	innit(&dados);
 	if (check_start(argc, argv, &dados) != 0)
 		return (destruir(&dados, 1), 1);
