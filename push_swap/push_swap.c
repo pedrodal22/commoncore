@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 22:12:40 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/14 20:24:10 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/15 00:58:01 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,35 @@ void	sort_small(int argc, t_node **stack_a, t_node **stack_b)
 		return ;
 }
 
+void insert_sort(t_node **stackA, t_node **stackB)
+{
+    t_node *node_to_insert;
+    t_node *current;
+
+    while (*stackB != NULL)
+    {
+        node_to_insert = *stackB;
+        *stackB = (*stackB)->next;
+        node_to_insert->next = NULL;
+
+        if (*stackA == NULL || node_to_insert->original_value < (*stackA)->original_value)
+        {
+            node_to_insert->next = *stackA;
+            *stackA = node_to_insert;
+        }
+        else
+        {
+            current = *stackA;
+            while (current->next != NULL && current->next->original_value < node_to_insert->original_value)
+            {
+                current = current->next;
+            }
+            node_to_insert->next = current->next;
+            current->next = node_to_insert;
+        }
+    } //nao estou a usar as funções pa nem rra/ra/sa
+}
+
 void sort_5(t_node **stackA, t_node **stackB)
 {
     int pushed = 0;
@@ -100,12 +129,7 @@ void sort_5(t_node **stackA, t_node **stackB)
         pushed++;
     }
     sort_3(stackA);
-
-    if ((*stackB)->indice_objtv == 0)
-        rotate(stackB);
-
-    while (*stackB != NULL)
-        push_two(stackB, stackA, 2);// o problema tem que ser arranjado aqui
+    insert_sort(stackA, stackB);
 }
 
 void	sort_3(t_node **stackA)
@@ -136,6 +160,17 @@ void	sort_3(t_node **stackA)
 	
 }
 
+void print_stack(t_node *stack)
+{
+    t_node *current = stack;
+    while (current != NULL)
+    {
+        printf("%d\n", current->original_value);
+        current = current->next;
+    }
+}
+
+
 int	main(int argc, char *argv[])
 {
 	int		*array;
@@ -157,7 +192,10 @@ int	main(int argc, char *argv[])
 		put_index(argc, array, copy, array_index);
 		in_st(argc, &stack_a, array, array_index);
 		if (argc == 4 || argc == 6)
+		{
 			sort_small(argc, &stack_a, &stack_b);
+			print_stack(stack_a);	
+		}
 		else if (sec_check(&stack_a) == 0 || comparison(&stack_a, &stack_b) == 1)
 			free_all(array, array_index, copy, stack_a);
 	}

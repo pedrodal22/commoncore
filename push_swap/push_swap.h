@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 01:48:19 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/14 19:59:34 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/15 00:54:32 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ void			rotate_two(t_node **stackA);
 void			sort_3(t_node **stackA);
 void 			rotate_three(t_node **stackB);
 void		sort_5(t_node **stackA, t_node **stackB);
+
+void print_stack(t_node *stack);
 
 #endif 
