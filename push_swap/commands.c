@@ -1,72 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commands.c                                         :+:      :+:    :+:   */
+/*   commands_two.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 21:04:09 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/14 18:35:29 by pfranco-         ###   ########.fr       */
+/*   Created: 2024/08/14 18:35:02 by pfranco-          #+#    #+#             */
+/*   Updated: 2024/08/14 19:55:22 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	numero_nodes(t_node **stackA)
+void	push_two(t_node **fonte, t_node **destino, int i)
 {
-	int		i;
-	t_node	*current;
-
-	i = 0;
-	current = *stackA;
-	while (current != NULL)
-	{
-		i++;
-		current = current->next;
-	}
-	return (i);
+	push(fonte, destino);
+	if (i == 1)
+		ft_printf("pb\n");
+	else
+		ft_printf("pa\n");
 }
 
-int	check_order(t_node **stackA)
+void	rotate_two(t_node **stackA)
 {
-	t_node	*current;
-
-	if (stackA == NULL || *stackA == NULL)
-		return (0);
-	current = *stackA;
-	while (current->next != NULL)
-	{
-		if (current->indice_objtv > current->next->indice_objtv)
-			return (1);
-		current = current->next;
-	}
-	return (0);
+	rotate(stackA);
+	ft_printf("ra\n");
 }
 
-int	comparison(t_node **stackA, t_node **stackB)
+void rotate_three(t_node **stackB)
 {
-	int				mask;
-	int				i_nodes;
-	int				i;
+    rotate(stackB);
+	ft_printf("rb\n");
+}
 
-	mask = 1;
-	i_nodes = numero_nodes(stackA);
-	while (mask != 0)
-	{
-		i = 0;
-		if (check_order(stackA) == 0)
-			return (1);
-		while (i < i_nodes)
-		{
-			if (((*stackA)->indice_objtv & mask) == 0)
-				push_two(stackA, stackB, 1);
-			else
-				rotate_two(stackA);
-			i++;
-		}
-		while (*stackB != NULL)
-			push_two(stackB, stackA, 2);
-		mask <<= 1;
-	}
-	return (0);
+void    swap_two(t_node **stackA)
+{
+    swap(stackA);
+    ft_printf("sa\n");
+}
+
+void    reverse_rotate_two(t_node **stackA)
+{
+    reverse_rotate(stackA);
+    ft_printf("rra\n");
 }

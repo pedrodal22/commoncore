@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 18:22:25 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/07/02 10:20:59 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:55:14 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,44 @@ long int	ft_atoi(const char *str)
 		a++;
 	}
 	return (result * simb);
+}
+
+void	bubble_sort(int *copy, int argc)
+{
+	int	i;
+	int	a;
+	int	temp;
+
+	i = 0;
+	a = 0;
+	while (i < (argc - 1))
+	{
+		while (a < (argc - 1) - i - 1)
+		{
+			if (copy[a] > copy[a + 1])
+			{
+				temp = copy[a];
+				copy[a] = copy[a + 1];
+				copy[a + 1] = temp;
+			}
+			a++;
+		}
+		a = 0;
+		i++;
+	}
+}
+
+int	numero_nodes(t_node **stackA)
+{
+	int		i;
+	t_node	*current;
+
+	i = 0;
+	current = *stackA;
+	while (current != NULL)
+	{
+		i++;
+		current = current->next;
+	}
+	return (i);
 }

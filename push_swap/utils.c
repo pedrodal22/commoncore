@@ -6,36 +6,11 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 22:10:17 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/14 15:08:24 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/15 20:20:31 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	bubble_sort(int *copy, int argc)
-{
-	int	i;
-	int	a;
-	int	temp;
-
-	i = 0;
-	a = 0;
-	while (i < (argc - 1))
-	{
-		while (a < (argc - 1) - i - 1)
-		{
-			if (copy[a] > copy[a + 1])
-			{
-				temp = copy[a];
-				copy[a] = copy[a + 1];
-				copy[a + 1] = temp;
-			}
-			a++;
-		}
-		a = 0;
-		i++;
-	}
-}
 
 int	check_double(int argc, char **argv)
 {
@@ -93,7 +68,23 @@ int	check(int argc, char **argv)
 	return (0);
 }
 
-int	sec_check(t_node **stackA)
+// int	sec_check(t_node **stackA)
+// {
+// 	t_node	*current;
+
+// 	if (stackA == NULL || *stackA == NULL)
+// 		return (0);
+// 	current = *stackA;
+// 	while (current->next != NULL)
+// 	{
+// 		if (current->indice_objtv > current->next->indice_objtv)
+// 			return (1);
+// 		current = current->next;
+// 	}
+// 	return (0);
+// }
+
+int	check_order(t_node **stackA)
 {
 	t_node	*current;
 
