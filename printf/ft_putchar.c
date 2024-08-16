@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:34:41 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/02/23 19:30:47 by pedro            ###   ########.fr       */
+/*   Updated: 2024/07/31 14:30:24 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../so_long.h"
 
 int	ft_putchar(char c)
 {
