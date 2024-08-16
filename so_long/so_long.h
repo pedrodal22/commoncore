@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:27:23 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/09 16:33:52 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:36:01 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,6 @@ void	moves_ad2(t_data *dados, int x, int y, int i);
 void	moves_ws2(t_data *dados, int x, int y, int i);
 void	display_colet(t_data *dados);
 void	print_errors(int error);
+void	free_check(t_data *dados, int flag);
 
 #endif

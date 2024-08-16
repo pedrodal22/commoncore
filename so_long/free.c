@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 11:24:17 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/14 16:44:45 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:36:16 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void free_check(t_data *dados, int flag)
+{
+	print_errors(flag);
+	free_all(dados, 1);
+	free_images(dados);
+	free_map(dados);
+	free_map_flood(dados);
+}
 
 void free_all(t_data *dados, int flag)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 17:46:04 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/14 17:04:53 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/16 12:08:26 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,13 @@ void	elementos_mapa(t_data *dados, int *player_count,
 	char	*original_str;
 
 	str = get_next_line(fd);
-	while (str != NULL)
+	while (str != NULL && *str != '\n')
 	{
+		if (*str == '\n') { //o problema do código está aqui, pois este check nao verifica como deve de ser se há ou nao um \n no final do ficheiro. contar o número de linhas, e ver se passa o número de linahs total do ficheiro. usar o loop do gnl, pois ele irá até ao final do ficheiro, logo saberá o número de linhas. 
+            free(str);
+            free_check(dados, 3);
+            return;
+        }
 		original_str = str;
 		while (*str != '\0')
 		{
@@ -91,7 +96,7 @@ int	check_mapa_valido(char **argv, t_data *dados)
 	elementos_mapa(dados, &player_count, &exit_count, fd);
 	close(fd);
 	if (player_count == 1 && exit_count == 1 && dados->colet_total >= 1
-		& dados->num_enemies <= 1)
+		&& dados->num_enemies <= 1)
 		return (0);
 	ft_printf("Error\nO mapa não tem os requisitos mínimos\n");
 	return (1);

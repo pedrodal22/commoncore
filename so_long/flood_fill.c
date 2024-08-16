@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:20:18 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/09 16:43:06 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:36:36 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,11 @@ void	flood(t_data *dados, int y, int x)
 	if (dados->flood_mapa[y][x] == 'C')
 		dados->flood_colet_count++;
 	if (dados->flood_mapa[y][x] == 'E')
+	{
+		dados->flood_mapa[y][x] = 'A';
 		dados->flood_exit_count++;
+		return ;
+	}
 	dados->flood_mapa[y][x] = 'A';
 	flood(dados, y + 1, x);
 	flood(dados, y - 1, x);
@@ -70,5 +74,5 @@ int	flood_fill(t_data *dados)
 		== dados->colet_total && dados->flood_exit_count == 1)
 		return (0);
 	else
-		return (print_errors(2), 1);
+		return (free_check(dados, 2), 1);
 }
