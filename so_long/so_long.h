@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:27:23 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/16 11:36:01 by pedro            ###   ########.fr       */
+/*   Updated: 2024/08/28 13:40:12 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #  define BUFFER_SIZE 20
 # endif
 
-# include "mlx-linux/minilibx-linux/mlx.h"
+# include "minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <stdio.h>
@@ -39,6 +39,7 @@ typedef struct s_data
 	char	**mapa;
 	int		x_mapa;
 	int		y_mapa;
+	char	*map_name;
 	char	**flood_mapa;
 	int		flood_mapa_x;
 	int		flood_mapa_y;
@@ -74,17 +75,24 @@ typedef struct s_data
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *line, char *buffer);
 int		ft_strlen(char *str);
+void	innit(t_data *dados);
+void	innit_two(t_data *dados);
 void	clear(char *buffer, int index);
 int		checkline(char *buffer);
+void	check_new_line(t_data *dados, int fd);
+void	check_new_line_error(t_data *dados);
 int		check_all(int argc, char **argv, t_data *dados);
 int		check_nome_ficheiro(int argc, char **argv);
 int		check_mapa_valido(char **argv, t_data *dados);
+void	elementos_mapa(t_data *dados, int *player_count,
+			int *exit_count, int fd);
 void	allocate_struct_map(int rows, int columns, t_data *dados);
 void	moves(t_data *dados, int keysym, int px);
 void	moves_ws(t_data *dados, int i);
 void	moves_ad(t_data *dados, int i);
+void	moves_game_over(t_data *dados, int flag);
 void	allocate_flood_map(int rows, int columns, t_data *dados);
-void	mapa_linhas_colunas(t_data *dados, int fd);
+void	map_lines_columns(t_data *dados, int fd);
 int		flood_fill(t_data *dados);
 void	find_player(t_data *dados, int fd);
 void	flood(t_data *dados, int y, int x);
@@ -99,7 +107,7 @@ int		tecla(int keysym, t_data *dados);
 int		destruir(t_data *dados, int flag);
 int		moves_all(int keysym);
 void	create_map(t_data *dados, int fd);
-void 	free_all(t_data *dados, int flag);
+void	free_all(t_data *dados, int flag);
 void	free_map_flood(t_data *dados);
 void	free_images(t_data *dados);
 void	game_over(t_data *dados, int type);

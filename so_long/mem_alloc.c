@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mem_alloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:40:44 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/16 11:37:33 by pedro            ###   ########.fr       */
+/*   Updated: 2024/08/28 13:03:08 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	mapa_linhas_colunas(t_data *dados, int fd)
-{
-	char	*line;
-	int		i;
-	int		linhas;
-	int		colunas;
-
-	linhas = 0;
-	colunas = -1;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		i = 0;
-		while (line[i] != '\0' && line[i] != '\n')
-			i++;
-		if (colunas == -1 && i > 0)
-			colunas = i;
-		if (i > 0)
-			linhas++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	dados->mapa_colunas = colunas;
-	dados->mapa_linhas = linhas;
-	close(fd);
-}
 
 void	allocate_struct_map(int rows, int columns, t_data *dados)
 {

@@ -6,43 +6,11 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:59:07 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/14 15:54:44 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/28 13:39:34 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	game_over(t_data *dados, int type)
-{
-	if (type == 0)
-		printf("Encontras-te o esconderijo!\nGanhaste!\n");
-	else if (type == 1)
-		ft_printf("Encontraste-te o Xerife!\n");
-	else if (type == 2)
-		ft_printf("O Xerife encontrou-te!\n");
-	else if (type == 3)
-		ft_printf("Pisaste numa dinamite!\n");
-	destruir(dados, 0);
-}
-
-void	start_all(t_data *dados, char *map)
-{
-	int	fd;
-
-	fd = open(map, O_RDONLY);
-	mapa_linhas_colunas(dados, fd);
-	close(fd);
-	allocate_struct_map(dados->mapa_linhas, dados->mapa_colunas, dados);
-	fd = open(map, O_RDONLY);
-	create_map(dados, fd);
-	close(fd);
-	fd = open(map, O_RDONLY);
-	find_player(dados, fd);
-	close(fd);
-	dados->pos_atual_x = dados->pos_inicial_x;
-	dados->pos_atual_y = dados->pos_inicial_y;
-	inimigos_init(dados);
-}
 
 int	check_start(int argc, char **argv, t_data *dados)
 {
@@ -52,17 +20,7 @@ int	check_start(int argc, char **argv, t_data *dados)
 	return (0);
 }
 
-void	print_errors(int error)
-{
-	if (error == 0)
-		ft_printf("Error\nAs paredes do mapa são inválidas\n");
-	if (error == 1)
-		ft_printf("Error\nO mapa contém caractéres inválidos\n");
-	if (error == 2)
-		ft_printf("Error\nNão há um caminho válido até à saída/aos itens");
-}
-
-void innit(t_data *dados)
+void	innit(t_data *dados)
 {
 	dados->mapa = NULL;
 	dados->x_mapa = 0;
@@ -82,6 +40,11 @@ void innit(t_data *dados)
 	dados->exit_pos_x = 0;
 	dados->exit_pos_y = 0;
 	dados->mlx_ptr = NULL;
+	innit_two(dados);
+}
+
+void	innit_two(t_data *dados)
+{
 	dados->win_ptr = NULL;
 	dados->img_ptr_sand = NULL;
 	dados->img_ptr_cato = NULL;
@@ -98,6 +61,27 @@ void innit(t_data *dados)
 	dados->enemy_direction = 0;
 	dados->count_moves = 0;
 }
+
+void	start_all(t_data *dados, char *map)
+{
+	int	fd;
+
+	dados->map_name = map;
+	fd = open(map, O_RDONLY);
+	map_lines_columns(dados, fd);
+	close(fd);
+	allocate_struct_map(dados->mapa_linhas, dados->mapa_colunas, dados);
+	fd = open(map, O_RDONLY);
+	create_map(dados, fd);
+	close(fd);
+	fd = open(map, O_RDONLY);
+	find_player(dados, fd);
+	close(fd);
+	dados->pos_atual_x = dados->pos_inicial_x;
+	dados->pos_atual_y = dados->pos_inicial_y;
+	inimigos_init(dados);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_data	dados;
@@ -119,7 +103,8 @@ int	main(int argc, char *argv[])
 		mlx_hook(dados.win_ptr, KeyRelease, KeyReleaseMask, &tecla, &dados);
 		if (dados.num_enemies == 1)
 			mlx_loop_hook(dados.mlx_ptr, move_inimigos, &dados);
-		mlx_hook(dados.win_ptr, DestroyNotify, StructureNotifyMask, destruir, &dados);
+		mlx_hook(dados.win_ptr, DestroyNotify, StructureNotifyMask,
+			destruir, &dados);
 		mlx_loop(dados.mlx_ptr);
 	}
 	return (0);

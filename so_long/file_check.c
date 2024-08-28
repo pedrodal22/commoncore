@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 17:46:04 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/16 12:08:26 by pedro            ###   ########.fr       */
+/*   Updated: 2024/08/28 13:37:09 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,87 +43,44 @@ int	check_nome_ficheiro(int argc, char **argv)
 	if (argv[1][a] == '.' && argv[1][a + 1] == 'b' && argv[1][a + 2] == 'e'
 		&& argv[1][a + 3] == 'r')
 		return (0);
-	ft_printf("Error\nO mapa, enquanto argumento, está errado\n");
+	ft_printf("Error\nThe map, as an argument, is invalid.\n");
 	return (1);
+}
+
+void	contar_elementos_linha(char *str, t_data *dados,
+	int *player_count, int *exit_count)
+{
+	while (*str)
+	{
+		if (*str == 'P')
+			(*player_count)++;
+		else if (*str == 'C')
+			dados->colet_total++;
+		else if (*str == 'E')
+			(*exit_count)++;
+		else if (*str == 'X')
+			dados->num_enemies++;
+		str++;
+	}
 }
 
 void	elementos_mapa(t_data *dados, int *player_count,
 	int *exit_count, int fd)
 {
 	char	*str;
-	char	*original_str;
 
 	str = get_next_line(fd);
-	while (str != NULL && *str != '\n')
+	while (str && *str != '\n')
 	{
-		if (*str == '\n') { //o problema do código está aqui, pois este check nao verifica como deve de ser se há ou nao um \n no final do ficheiro. contar o número de linhas, e ver se passa o número de linahs total do ficheiro. usar o loop do gnl, pois ele irá até ao final do ficheiro, logo saberá o número de linhas. 
-            free(str);
-            free_check(dados, 3);
-            return;
-        }
-		original_str = str;
-		while (*str != '\0')
+		if (*str == '\n')
 		{
-			if (*str == 'P')
-				(*player_count)++;
-			else if (*str == 'C')
-				dados->colet_total++;
-			else if (*str == 'E')
-				(*exit_count)++;
-			else if (*str == 'X')
-				dados->num_enemies++;
-			str++;
+			free(str);
+			free_check(dados, 3);
+			return ;
 		}
-		free(original_str);
+		contar_elementos_linha(str, dados, player_count, exit_count);
+		free(str);
 		str = get_next_line(fd);
 	}
 	free(str);
-}
-
-int	check_mapa_valido(char **argv, t_data *dados)
-{
-	int	player_count;
-	int	exit_count;
-	int	fd;
-
-	player_count = 0;
-	exit_count = 0;
-	dados->colet_total = 0;
-	dados->colet_count = 0;
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (1);
-	elementos_mapa(dados, &player_count, &exit_count, fd);
-	close(fd);
-	if (player_count == 1 && exit_count == 1 && dados->colet_total >= 1
-		&& dados->num_enemies <= 1)
-		return (0);
-	ft_printf("Error\nO mapa não tem os requisitos mínimos\n");
-	return (1);
-}
-
-int	check_invalid_char(int fd)
-{
-	char	*str;
-	char	*string_original;
-	int		check;
-
-	check = 0;
-	str = get_next_line(fd);
-	while (str != NULL)
-	{
-		string_original = str;
-		while (*str != '\n' && *str != '\0')
-		{
-			if (*str != '0' && *str != '1' && *str != 'E' && *str != 'P'
-				&& *str != 'T' && *str != 'C' && *str != 'X')
-				check = 1;
-			str++;
-		}
-		free(string_original);
-		if (check == 1)
-			return (print_errors(1), 1);
-		str = get_next_line(fd);
-	}
-	return (0);
 }

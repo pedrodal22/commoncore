@@ -54,12 +54,3 @@ int	ft_printf(const char *str, ...)
 	va_end (args);
 	return (count);
 }
-
-/* int main(void)
-{
-    char chr = 'A';
-
-    printf("Expected output:   %c %c %x %p.\n", chr, chr, 234, (void *)255105);
-    ft_printf("Testing ft_printf: %c %c %x %p.\n", chr, chr, 1353, 255105);
-    return 0;
-} */

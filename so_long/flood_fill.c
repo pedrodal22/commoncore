@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:20:18 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/16 11:36:36 by pedro            ###   ########.fr       */
+/*   Updated: 2024/08/28 12:08:45 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	find_player(t_data *dados, int fd)
 	a = 0;
 	i = 0;
 	line = get_next_line(fd);
-	while (line != NULL)
+	while (a < dados->mapa_linhas)
 	{
 		i = 0;
 		while (line[i] != '\n' && line[i] != '\0')

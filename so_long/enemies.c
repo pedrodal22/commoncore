@@ -6,7 +6,7 @@
 /*   By: pfranco- <pfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:30:45 by pfranco-          #+#    #+#             */
-/*   Updated: 2024/08/09 16:56:07 by pfranco-         ###   ########.fr       */
+/*   Updated: 2024/08/28 12:27:41 by pfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,33 +42,42 @@ int	move_inimigos(t_data *dados)
 	return (1);
 }
 
+void	update_enemy_position(t_data *dados, int *move, int *count)
+{
+	int	x;
+
+	x = dados->enemy_x;
+	(*count)++;
+	if (*count >= 25000)
+	{
+		*count = 0;
+		if (dados->mapa[dados->enemy_y / 64][(x / 64) + *move] != '0'
+			&& dados->mapa[dados->enemy_y / 64][(x / 64) + *move] != 'X')
+			*move *= -1;
+		if (((x / 64) + *move == dados->pos_atual_x)
+			&& ((dados->enemy_y / 64) == dados->pos_atual_y))
+		{
+			game_over(dados, 2);
+			exit(1);
+		}
+		dados->enemy_x += 64 * (*move);
+	}
+}
+
 void	move_inimigos_ad(t_data *dados)
 {
 	static int	move;
 	static int	count;
-	int			x;
 
 	if (!move)
 		move = 1;
 	if (!count)
 		count = 0;
-	count += 1;
-	x = dados->enemy_x;
-	if (count >= 25000)
+	update_enemy_position(dados, &move, &count);
+	if (count == 0)
 	{
-		count = 0;
-		if (dados->mapa[dados->enemy_y / 64][(x / 64) + move] != '0'
-			&& dados->mapa[dados->enemy_y / 64][(x / 64) + move] != 'X')
-			move *= -1;
-		if (((x / 64) + move == dados->pos_atual_x)
-			&& ((dados->enemy_y / 64) == dados->pos_atual_y))
-			{
-				game_over(dados, 2);
-				exit (1);
-			}
 		mlx_put_image_to_window(dados->mlx_ptr, dados->win_ptr,
-			dados->img_ptr_sand, dados->enemy_x, dados->enemy_y);
-		dados->enemy_x = (dados->enemy_x + (64 * move));
+			dados->img_ptr_sand, dados->enemy_x - 64 * move, dados->enemy_y);
 		mlx_put_image_to_window(dados->mlx_ptr, dados->win_ptr,
 			dados->img_ptr_cop, dados->enemy_x, dados->enemy_y);
 	}
